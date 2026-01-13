@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Roles;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Termwind\Components\Raw;
+
+class UserController extends Controller
+{
+    public function getList()
+    {
+        //$users = User::latest()->get();
+        $users = User::all();
+        return view('users.list', compact('users'));
+    }
+
+    public function getAdd()
+    {
+        $roles = Roles::all();
+        return view('users.add', compact('roles'));
+    }
+
+    public function postAdd(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:128'],
+            'username' => ['nullable', 'unique:users,username', 'max:50'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'roles' => ['required', 'exists:roles,id'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'id_card' => ['nullable', 'unique:users,id_card', 'max:12'],
+            'phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['nullable', 'string', 'max:255'],
+            //'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            //'background' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'jobs' => ['nullable', 'string', 'max:255'],
+            'school' => ['nullable', 'string', 'max:255'],
+            'company' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $orm = new User();
+        $orm->name = $request->name;
+        $orm->username = $request->username;
+        $orm->password = Hash::make($request->password);
+        $orm->is_active = $request->boolean('is_active', true); 
+        $orm->roles = $request->roles;
+        $orm->email = $request->email;
+        $orm->id_card = $request->id_card;
+        $orm->phone = $request->phone;
+        $orm->address = $request->address;
+        $orm->avatar = $request->avatar;
+        $orm->background = $request->background;
+        $orm->jobs = $request->jobs;
+        $orm->school = $request->school;
+        $orm->company = $request->company;
+        $orm->save();
+
+        return redirect()->route('users')->with('success', 'Added user successfully.');
+    }
+
+    public function getUpdate($id)
+    {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
+    }
+
+    public function postUpdate(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+         $request->validate([
+            'name' => ['required', 'string', 'max:128'],
+            'username' => ['nullable', 'unique:users,username', 'max:50'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'roles' => ['required', 'exists:roles,id'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'id_card' => ['nullable', 'unique:users,id_card', 'max:12'],
+            'phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['nullable', 'string', 'max:255'],
+            //'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            //'background' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'jobs' => ['nullable', 'string', 'max:255'],
+            'school' => ['nullable', 'string', 'max:255'],
+            'company' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $orm = User::findOrFail($id);
+        $orm->name = $request->name;
+        $orm->username = $request->username;
+        if ($request->filled('password_new')) {
+            $orm->password = Hash::make($request->password_new);
+        }
+        $orm->is_active = $request->boolean('is_active', $user->is_active);
+        $orm->roles = $request->roles;
+        $orm->email = $request->email;
+        $orm->id_card = $request->id_card;
+        $orm->phone = $request->phone;
+        $orm->address = $request->address;
+        $orm->avatar = $request->avatar;
+        $orm->background = $request->background;
+        $orm->jobs = $request->jobs;
+        $orm->school = $request->school;
+        $orm->company = $request->company;
+        $orm->save();
+
+        /*$data = $request->only(['name', 'email', 'username', 'phone', 'id_card', 'roles']);
+        $data['is_active'] = $request->boolean('is_active', $user->is_active);
+        if ($request->filled('password_new')) {
+            $data['password'] = Hash::make($request->password_new);
+        }
+        $user->update($data);*/
+
+        return redirect()->route('users')->with('success', 'Updated user successfully.');
+    }
+
+    public function getDelete($id)
+    {
+        $orm = User::findOrFail($id);
+
+        if ($orm->id === auth()->id()) {
+            return redirect()->route('users')->with('error', 'Cannot delete your own account.');
+        }
+        if ($orm->orders()->count() > 0) {
+            return redirect()->route('users')->with('error', 'Cannot delete user with existing orders.');
+        }
+        $orm->delete();
+
+        return redirect()->route('users')->with('success', 'Deleted user successfully.');
+    }
+}

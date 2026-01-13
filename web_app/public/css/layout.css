@@ -1,0 +1,1653 @@
+/* ===================================
+   GREENTECH IoT AGRICULTURE THEME
+   Enhanced Gradient with Dark/Light Green Contrast
+   Updated with NewsMart Auth Styles
+   =================================== */
+
+:root {
+    /* Primary Colors - Dark Greens */
+    --primary-super-dark: #008B45;  /* SpringGreen4  */
+    --primary-dark: #3CB371;        /* MediumSpringGreen */
+    --primary-medium: #2E8B57;      /* SeaGreen */
+    
+    /* Primary Colors - Light Greens */
+    --primary-light: #00CD66;       /* SpringGreen3 */
+    --primary-lighter: #98FB98;     /* PaleGreen */
+    --primary-pale: #90EE90;        /* PaleGreen2 */
+    
+    /* Vibrant Accent Greens */
+    --green-spring: #00FF7F;        /* SpringGreen1 */
+    --green-spring2: #00EE76;       /* SpringGreen2 */
+    --green-lime: #32CD32;          /* LimeGreen */
+    --green-aqua: #7FFFD4;          /* Aquamarine1 */
+    --green-sea-light: #20B2AA;     /* LightSeaGreen */
+    --green-lawn: #7CFC00;          /* LawnGreen */
+    --green-medium-spring: #00FA9A; /* MediumSpringGreen */
+    
+    /* Secondary Colors - Blue Accent */
+    --accent-dark: #104E8B;         /* DodgerBlue4 */
+    --accent-medium: #1E90FF;       /* DodgerBlue1 */
+    --accent-light: #4682B4;        /* SteelBlue */
+    --accent-lighter: #B0E0E6;      /* PowderBlue */
+    
+    /* Light Mode Text Colors */
+    --text-dark: #000000;           /* Black */
+    --text-medium: #696969;         /* DimGray */
+    --text-light: #D3D3D3;          /* LightGray */
+    --text-green: #2E8B57;          /* SeaGreen */
+    --text-green-dark: #008B45;     /* SpringGreen4 */
+    
+    /* Dark Mode Text Colors */
+    --text-dm-primary: #E6E6FA;     /* Lavender */
+    --text-dm-secondary: #F0F8FF;   /* AliceBlue */
+    --text-dm-muted: #C6E2FF;       /* SlateGray1 */
+    --text-dm-ghost: #F8F8FF;       /* GhostWhite */
+    --text-dm-azure: #F0FFFF;       /* Azure1 */
+    
+    /* Backgrounds */
+    --bg-light: #F5F5F5;            /* WhiteSmoke */
+    --bg-dark: #1C1C1C;             /* Gray11 */
+    --bg-darker: #0A1F0A;
+    --bg-darkest: #041504;
+
+    /* Auth Colors for NewsMart Style Integration */
+    --auth-primary: #228B22;
+    --auth-secondary: #2E8B57;
+    --auth-dark: #008B45;
+    --auth-input-bg: rgba(0, 0, 0, 0.9);
+    --auth-border: #32CD32;
+    --auth-focus: #00FF7F;
+    --auth-error: #FF3030;
+    --auth-success: #00CD00;
+    --auth-text: #F0FFF0;
+    --auth-text-light: #E8F5E9;
+    --auth-bg-overlay: rgba(0, 0, 0, 0.9);
+    --auth-card-bg: rgba(255, 255, 255, 0.1);
+    --auth-card-border: rgba(255, 255, 255, 0.2);
+    --auth-shadow: 0 8px 32px 0 rgba(34, 139, 34, 0.37);
+}
+
+/* ===================================
+   BODY AND GENERAL STYLES
+   =================================== */
+body {
+    background-color: var(--bg-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}   
+
+/* ===================================
+   NAVBAR HORIZONTAL - HIGH CONTRAST GRADIENT
+   =================================== */
+.navbar-custom {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-medium) 50%, 
+        var(--primary-light) 75%, 
+        var(--green-lime) 100%);
+    box-shadow: 0 4px 20px rgba(0, 100, 0, 0.4);
+    min-height: 60px;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--green-spring);
+}
+
+.navbar-custom .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-custom .navbar-brand i {
+    color: var(--green-spring);
+    filter: drop-shadow(0 0 3px rgba(0, 255, 127, 0.5));
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: white !important;
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.3) 0%, rgba(152, 251, 152, 0.2) 100%);
+    border-radius: 6px;
+    transform: translateY(-1px);
+}
+
+.navbar-custom .dropdown-menu {
+    background: linear-gradient(180deg, var(--primary-lighter) 0%, var(--primary-pale) 50%, #FFFFFF 100%);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 10px 30px rgba(0, 100, 0, 0.25);
+    border-radius: 10px;
+}
+
+.navbar-custom .dropdown-item {
+    color: var(--primary-super-dark);
+    transition: all 0.3s ease;
+    padding: 0.7rem 1rem;
+    font-weight: 500;
+}
+
+.navbar-custom .dropdown-item:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+    color: white;
+}
+
+.navbar-custom .navbar-toggler {
+    border: 2px solid var(--green-spring);
+    color: white;
+    background: rgba(0, 255, 127, 0.1);
+}
+
+/* Brand Text */
+.brand-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* ===================================
+   SIDEBAR TOGGLE BUTTON
+   =================================== */
+.sidebar-toggle {
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, rgba(152, 251, 152, 0.1) 100%);
+    border: 2px solid var(--green-spring);
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: scale(1.05);
+}
+
+/* ===================================
+   SEARCH FORM
+   =================================== */
+.search-form {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.search-form .form-control {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid var(--primary-light);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding-left: 1rem;
+}
+
+.search-form .form-control:focus {
+    border-color: var(--green-spring);
+    box-shadow: 0 0 0 4px rgba(0, 255, 127, 0.25);
+}
+
+.search-form .btn {
+    border-radius: 0 25px 25px 0;
+    border: 2px solid var(--primary-light);
+    border-left: none;
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 50%, var(--green-lime) 100%);
+    color: white;
+    padding: 0.375rem 1rem;
+}
+
+.search-form .btn:hover {
+    background: linear-gradient(135deg, var(--green-lime) 0%, var(--green-spring) 50%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+}
+
+/* ===================================
+   SIDEBAR STYLES - ENHANCED GRADIENT
+   =================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100vh;
+    z-index: 1050;
+    background: linear-gradient(180deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 30%, 
+        var(--primary-medium) 60%, 
+        var(--bg-darker) 100%);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    box-shadow: 4px 0 25px rgba(0, 100, 0, 0.4);
+    border-right: 3px solid var(--green-spring);
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+.sidebar .sidebar-nav {
+    padding-top: 65px; 
+}
+
+.sidebar-header {
+    padding: 1.2rem 1rem;
+    background: linear-gradient(135deg, 
+        var(--primary-light) 0%, 
+        var(--primary-medium) 50%, 
+        var(--primary-dark) 100%);
+    border-bottom: 3px solid var(--green-spring);
+}
+
+.sidebar-header h5 {
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header h5 i {
+    color: var(--green-spring);
+    margin-right: 8px;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 127, 0.6));
+}
+
+.sidebar-close {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 255, 127, 0.2) 100%);
+    border: 1px solid var(--green-spring);
+    color: white;
+    font-size: 1.1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-close:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: rotate(90deg);
+}
+
+.sidebar-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar-nav .nav-item {
+    border-bottom: 1px solid rgba(0, 255, 127, 0.15);
+}
+
+.sidebar-nav .nav-link {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-nav .nav-link:hover {
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 127, 0.25) 0%, 
+        rgba(152, 251, 152, 0.15) 50%, 
+        transparent 100%);
+    color: var(--green-spring);
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--green-spring);
+}
+
+.sidebar-nav .nav-link i {
+    width: 25px;
+    margin-right: 12px;
+    color: var(--primary-light);
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: var(--green-spring);
+    filter: drop-shadow(0 0 3px rgba(0, 255, 127, 0.5));
+}
+
+/* ===================================
+   SIDEBAR SECTIONS
+   =================================== */
+.sidebar-section-title {
+    color: var(--green-aqua);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem 0.5rem;
+    margin: 0;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(127, 255, 212, 0.25);
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.3) 0%, transparent 100%);
+}
+
+/* ===================================
+   SIDEBAR DROPDOWNS
+   =================================== */
+.sidebar-dropdown {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sidebar-dropdown:hover {
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 127, 0.2) 0%, 
+        rgba(152, 251, 152, 0.1) 50%, 
+        transparent 100%);
+    color: var(--green-spring);
+}
+
+.sidebar-dropdown i {
+    width: 22px;
+    margin-right: 12px;
+    color: var(--primary-lighter);
+}
+
+.sidebar-dropdown:hover i {
+    color: var(--green-spring);
+}
+
+.sidebar-dropdown .dropdown-icon {
+    float: right;
+    transition: transform 0.3s ease;
+    color: var(--primary-lighter);
+}
+
+.sidebar-dropdown.collapsed .dropdown-icon {
+    transform: rotate(-90deg);
+}
+
+.sidebar-submenu {
+    background: linear-gradient(180deg, rgba(0, 100, 0, 0.3) 0%, rgba(0, 0, 0, 0.25) 100%);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.sidebar-submenu.show {
+    max-height: 500px;
+}
+
+.sidebar-submenu .nav-link {
+    padding-left: 3.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    border-left: 3px solid transparent;
+}
+
+.sidebar-submenu .nav-link:hover {
+    color: var(--green-spring);
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.15) 0%, transparent 100%);
+    border-left-color: var(--green-spring);
+}
+
+/* ===================================
+   OVERLAY
+   =================================== */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 100, 0, 0.5) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===================================
+   THEME AND LANGUAGE TOGGLES
+   =================================== */
+.theme-toggle,
+.lang-toggle {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.theme-toggle i,
+.lang-toggle i {
+    width: 22px;
+    margin-right: 12px;
+    color: var(--primary-lighter);
+}
+
+.theme-toggle:hover,
+.lang-toggle:hover {
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%);
+    color: var(--green-spring);
+}
+
+.theme-toggle:hover i,
+.lang-toggle:hover i {
+    color: var(--green-spring);
+}
+
+.modal-backdrop {
+    z-index: 1059 !important; /* Ngay dưới Modal */
+}
+
+/* Đảm bảo Modal nằm trên Backdrop */
+.modal {
+    z-index: 1060 !important; /* Cao hơn mọi thứ: Navbar (1030), Sidebar (1050), Backdrop (1059) */
+}
+
+/* ===================================
+   BADGE STYLES
+   =================================== */
+.badge-role {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-light) 100%);
+    color: var(--primary-super-dark);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 255, 127, 0.3);
+}
+
+/* ===================================
+   MAIN CONTENT
+   =================================== */
+.main-content {
+    transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: calc(100vh - 200px);
+}
+
+.main-content.sidebar-open {
+    margin-left: 400px;
+}
+
+@media (max-width: 768px) {
+    .main-content.sidebar-open {
+        margin-left: 0;
+    }
+}
+
+/* ===================================
+   FOOTER - FULL DESIGN WITH HIGH CONTRAST
+   =================================== */
+footer {
+    background: linear-gradient(135deg, 
+        var(--bg-dark) 0%, 
+        var(--primary-medium) 50%, 
+        var(--bg-darker) 100%);
+    color: var(--text-dm-primary);
+    margin-top: 2rem;
+    padding: 0;
+    border-top: 4px solid;
+    border-image: linear-gradient(90deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-lighter) 100%) 1;
+}
+
+.footer-service-intro {
+    background: linear-gradient(135deg, 
+        rgba(0, 100, 0, 0.253) 0%, 
+        rgba(0, 255, 127, 0.15) 50%, 
+        rgba(46, 139, 87, 0.3) 100%);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 10px 40px rgba(0, 100, 0, 0.3);
+}
+
+.footer-service-intro h2 {
+    color: var(--green-spring);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.footer-service-intro h2 i {
+    color: var(--green-aqua);
+    filter: drop-shadow(0 0 5px rgba(127, 255, 212, 0.5));
+}
+
+.footer-service-intro p {
+    color: var(--text-dm-secondary);
+    line-height: 1.7;
+}
+
+.footer-service-intro .highlight {
+    color: var(--green-spring);
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 127, 0.3);
+}
+
+/* Footer Columns */
+.footer-column {
+    background: linear-gradient(135deg, 
+        rgba(0, 100, 0, 0.35) 0%, 
+        rgba(46, 139, 87, 0.25) 50%, 
+        rgba(0, 0, 0, 0.3) 100%);
+    border: 1px solid var(--primary-medium);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.footer-column h3 {
+    color: var(--green-spring);
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.footer-link-item {
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.4) 0%, rgba(46, 139, 87, 0.2) 100%);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color: var(--text-dm-muted);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.footer-link-item:hover {
+    color: var(--green-spring);
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.2) 0%, rgba(152, 251, 152, 0.1) 100%);
+    transform: translateX(5px);
+    border-left-color: var(--green-spring);
+}
+
+.footer-info-item {
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.35) 0%, rgba(46, 139, 87, 0.2) 100%);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    color: var(--text-dm-muted);
+}
+
+.footer-app-section {
+    text-align: center;
+}
+
+.footer-qr-placeholder {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 50%, var(--green-aqua) 100%);
+    border: 3px dashed var(--green-spring);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+    color: var(--primary-super-dark);
+    font-weight: bold;
+}
+
+.footer-app-button {
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 50%, var(--green-lime) 100%);
+    border: 2px solid var(--green-spring);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.25rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-app-button:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 255, 127, 0.4);
+}
+
+.footer-bottom {
+    border-top: 2px solid var(--primary-medium);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+    color: var(--text-dm-muted);
+}
+
+.footer-bottom-links a {
+    color: var(--green-spring);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    text-decoration: underline;
+    color: var(--green-aqua);
+    text-shadow: 0 0 8px rgba(0, 255, 127, 0.4);
+}
+
+.footer-company-info {
+    color: var(--text-dm-secondary);
+    font-weight: 500;
+}
+
+.footer-highlight {
+    color: var(--green-spring);
+    font-weight: 600;
+}
+
+/* ===================================
+   AUTHENTICATION STYLES - INTEGRATED NEWSMART DESIGN
+   =================================== */
+
+/* GreenTech Auth Container */
+.auth-container-greentech {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+}
+
+/* Background with image and effects */
+.auth-background,
+.auth-regis-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/greentech.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.auth-background::after,
+.auth-regis-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 139, 69, 0.9) 0%,
+        rgba(46, 139, 87, 0.6) 50%,
+        rgba(0, 255, 127, 0.3) 100%
+    );
+    z-index: -1;
+}
+
+/* Auth Card Layout */
+.auth-card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 640px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--auth-shadow);
+    backdrop-filter: blur(16px);
+    background: var(--auth-card-bg);
+    border: 1px solid var(--auth-card-border);
+    display: flex;
+    min-height: 400px;
+}
+
+/* Welcome Section */
+.auth-welcome,
+.auth-regis-welcome {
+    position: relative;
+    display: none;
+    width: 50%;
+    background-image: url('../images/greentech.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.welcome-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 139, 69, 0.8) 0%,
+        rgba(46, 139, 87, 0.5) 50%,
+        rgba(0, 255, 127, 0.3) 100%
+    );
+    backdrop-filter: blur(2px);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--auth-text);
+    padding: 1rem;
+}
+
+.welcome-content h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.3;
+    color: #00FF7F;
+}
+
+.welcome-motto {
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--auth-text-light);
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+}
+
+/* Form Section */
+.auth-form-section {
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(to right, transparent, #008B45);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0 12px 12px 0;
+    position: relative;
+}
+
+/* Form Header */
+.auth-form-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.register-link {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    color: var(--auth-text-light);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.register-link:hover {
+    color: #00FF7F;
+}
+
+/* Form Title */
+.auth-form-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    color: #E8F5E9;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Input Groups */
+.auth-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 0.5rem;
+    color: var(--auth-text-light);
+    font-size: 0.875rem;
+    z-index: 2;
+}
+
+.auth-input {
+    width: 100%;
+    background: var(--auth-input-bg);
+    color: white;
+    padding: 0.375rem 0.5rem 0.375rem 1.75rem;
+    border: 1px solid var(--auth-border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.auth-input::placeholder {
+    color: var(--auth-text-light);
+    opacity: 0.7;
+}
+
+.auth-input:focus {
+    border-color: var(--auth-focus);
+    box-shadow: 0 0 0 2px rgba(0, 255, 127, 0.2);
+}
+
+.auth-input-error {
+    border-color: var(--auth-error);
+}
+
+.auth-input-error:focus {
+    box-shadow: 0 0 0 2px rgba(255, 48, 48, 0.2);
+}
+
+/* Button Styling */
+.auth-btn-login {
+    width: 100%;
+    padding: 0.375rem;
+    background: linear-gradient(
+        to right,
+        var(--auth-primary),
+        var(--auth-secondary)
+    );
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 36px;
+    position: relative;
+}
+
+.auth-btn-login:hover:not(:disabled) {
+    background: linear-gradient(
+        to right,
+        var(--auth-border),
+        #32CD32
+    );
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+}
+
+.auth-btn-login:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Messages */
+.auth-message {
+    margin-top: 0.5rem;
+    padding: 0.375rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.auth-error {
+    color: #000000;
+    background: var(--auth-error);
+}
+
+.auth-success {
+    color: #000000;
+    background: var(--auth-success);
+}
+
+/* Remember Me */
+.auth-remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.auth-remember input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: var(--auth-primary);
+    transform: scale(0.8);
+}
+
+.auth-remember-label {
+    font-size: 0.75rem;
+    color: var(--auth-text-light);
+    cursor: pointer;
+}
+
+/* Register Text */
+.auth-register-text {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--auth-text-light);
+}
+
+/* Logo Styling */
+.auth-logo-greentech img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid #00FF7F;
+    box-shadow: 0 2px 8px rgba(0, 255, 127, 0.3);
+}
+
+/* ===================================
+   CUSTOM SCROLLBAR FOR SIDEBAR
+   =================================== */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--green-spring) 0%, var(--primary-light) 50%, var(--primary-medium) 100%);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--green-spring);
+}
+
+/* ===================================
+   DARK MODE STYLES
+   =================================== */
+.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .navbar-custom {
+    background: linear-gradient(135deg, 
+        #041504 0%, 
+        #0A2A0A 25%, 
+        var(--primary-super-dark) 50%, 
+        var(--primary-dark) 75%, 
+        #0D350D 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .sidebar {
+    background: linear-gradient(180deg, 
+        #041504 0%, 
+        #0A2A0A 30%, 
+        var(--primary-super-dark) 60%, 
+        #050F05 100%);
+}
+
+.dark-mode .dropdown-menu {
+    background: linear-gradient(180deg, #1A2A1A 0%, #0D1F0D 50%, #1C1C1C 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .dropdown-item {
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .dropdown-item:hover {
+    background: linear-gradient(90deg, var(--primary-super-dark) 0%, var(--primary-dark) 50%, var(--primary-medium) 100%);
+    color: white;
+}
+
+.dark-mode .search-form .form-control {
+    background-color: #1A2A1A;
+    border-color: var(--primary-dark);
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .search-form .form-control::placeholder {
+    color: #6A8A6A;
+}
+
+.dark-mode footer {
+    background: linear-gradient(135deg, 
+        #020802 0%, 
+        #041504 25%, 
+        #0A2A0A 50%, 
+        var(--primary-super-dark) 75%, 
+        #050F05 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-service-intro {
+    background: linear-gradient(135deg, rgba(0, 50, 0, 0.4) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-column {
+    background: linear-gradient(135deg, rgba(0, 50, 0, 0.35) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.35) 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-link-item {
+    background: linear-gradient(90deg, rgba(0, 50, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.dark-mode .footer-link-item:hover {
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 100, 0, 0.2) 100%);
+}
+
+.dark-mode .footer-info-item {
+    background: linear-gradient(90deg, rgba(0, 50, 0, 0.35) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.dark-mode .footer-bottom {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 50, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+    border-color: var(--primary-dark);
+}
+
+/* ===================================
+   RESPONSIVE ADJUSTMENTS
+   =================================== */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 0;
+    }
+
+    .search-form {
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .brand-text {
+        font-size: 1.1rem;
+    }
+
+    /* Auth Responsive */
+    .auth-welcome,
+    .auth-regis-welcome {
+        display: none;
+    }
+    
+    .auth-form-section {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-text {
+        font-size: 1rem;
+    }
+
+    .navbar-custom .navbar-brand i {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===================================
+   ANIMATION IMPROVEMENTS
+   =================================== */
+.navbar-custom .nav-link,
+.sidebar-nav .nav-link,
+.sidebar-dropdown,
+.theme-toggle,
+.lang-toggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility */
+.sidebar-toggle:focus,
+.sidebar-close:focus,
+.nav-link:focus,
+.sidebar-dropdown:focus {
+    outline: 2px solid var(--green-spring);
+    outline-offset: 2px;
+}
+
+/* Active/Click states */
+.nav-link:active,
+.sidebar-dropdown:active {
+    transform: scale(0.98);
+}
+
+/* ===================================
+   GRADIENT BANNER UTILITIES
+   =================================== */
+.banner-gradient-primary {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-medium) 50%, 
+        var(--primary-light) 75%, 
+        var(--green-lime) 100%);
+}
+
+.banner-gradient-spring {
+    background: linear-gradient(135deg, 
+        var(--primary-dark) 0%, 
+        var(--green-lime) 33%, 
+        var(--green-spring) 66%, 
+        var(--primary-lighter) 100%);
+}
+
+.banner-gradient-aqua {
+    background: linear-gradient(135deg, 
+        var(--primary-medium) 0%, 
+        var(--green-sea-light) 33%, 
+        var(--green-aqua) 66%, 
+        var(--primary-lighter) 100%);
+}
+
+.banner-gradient-contrast {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--green-spring) 25%, 
+        var(--primary-dark) 50%, 
+        var(--green-lime) 75%, 
+        var(--primary-medium) 100%);
+}
+
+.banner-gradient-mixed {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 20%, 
+        var(--accent-dark) 40%, 
+        var(--primary-medium) 60%, 
+        var(--accent-medium) 80%, 
+        var(--primary-light) 100%);
+}
+/* ===================================
+   DASHBOARD SPECIFIC STYLES
+   Integration with GreenTech CSS Variables
+   =================================== */
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Welcome Section Enhancements */
+.welcome-section.banner-gradient-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section.banner-gradient-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Quick Action Cards with Enhanced Hover Effects */
+.quick-action-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.quick-action-card:hover::after {
+    left: 100%;
+}
+
+/* Statistics Cards with Progress Bars */
+.stat-card {
+    position: relative;
+}
+
+.stat-card .progress {
+    height: 4px;
+    background: rgba(0, 100, 0, 0.1);
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.stat-card .progress-bar {
+    background: linear-gradient(90deg, var(--primary-light) 0%, var(--green-lime) 100%);
+    animation: progress-fill 2s ease-in-out;
+}
+
+@keyframes progress-fill {
+    from { width: 0%; }
+    to { width: var(--progress-width, 75%); }
+}
+
+/* Module Cards with Icon Animations */
+.module-card {
+    position: relative;
+}
+
+.module-icon {
+    transition: all 0.3s ease;
+}
+
+.module-card:hover .module-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 100, 0, 0.3);
+}
+
+/* Activity Items with Enhanced Interactions */
+.activity-item {
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0.25rem 0;
+}
+
+.activity-item:hover {
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.05) 0%, rgba(0, 255, 127, 0.02) 100%);
+    transform: translateX(5px);
+}
+
+/* Status Indicators with Pulsing Animation */
+.status-indicator {
+    position: relative;
+}
+
+.status-indicator.online::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: var(--green-lime);
+    opacity: 0.3;
+    animation: status-pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes status-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+/* Button Enhancements with GreenTech Theme */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Card Shadows */
+.stat-card,
+.module-card,
+.activity-card,
+.quick-action-card {
+    position: relative;
+}
+
+.stat-card::after,
+.module-card::after,
+.activity-card::after,
+.quick-action-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.stat-card:hover::after,
+.module-card:hover::after,
+.activity-card:hover::after,
+.quick-action-card:hover::after {
+    opacity: 1;
+}
+
+/* Loading States */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.dark-mode .loading-skeleton {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .welcome-section {
+        padding: 1.5rem;
+    }
+    
+    .stat-card,
+    .module-card {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 0 0.25rem;
+    }
+    
+    .welcome-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .quick-actions .col-lg-3 {
+        margin-bottom: 1rem;
+    }
+    
+    .module-actions {
+        justify-content: center;
+    }
+    
+    .activity-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .activity-icon {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-title {
+        font-size: 1.25rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .quick-action-card,
+    .stat-card,
+    .module-card {
+        padding: 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .welcome-section,
+    .quick-actions,
+    .statistics-section,
+    .management-modules,
+    .recent-activities {
+        break-inside: avoid;
+    }
+    
+    .quick-action-card,
+    .stat-card,
+    .module-card {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+    
+    .btn {
+        display: none;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .quick-action-card,
+    .stat-card,
+    .module-card,
+    .activity-card {
+        border-width: 2px;
+        border-color: var(--primary-super-dark);
+    }
+    
+    .btn {
+        border-width: 2px;
+    }
+}
+
+/* Focus Management for Keyboard Navigation */
+.quick-action-card:focus,
+.stat-card:focus,
+.module-card:focus,
+.activity-item:focus {
+    outline: 2px solid var(--green-spring);
+    outline-offset: 2px;
+}
+
+.btn:focus {
+    outline: 2px solid var(--green-spring);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar for Activity Lists */
+.activity-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) transparent;
+}
+
+.activity-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.activity-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.activity-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-light) 0%, var(--green-lime) 100%);
+    border-radius: 3px;
+}
+
+.activity-list::-webkit-scrollbar-thumb:hover {
+    background: var(--green-spring);
+}
+
+/* Notification Badge for New Items */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--green-spring);
+    color: var(--primary-super-dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Tooltip Enhancements */
+.tooltip-custom {
+    position: relative;
+}
+
+.tooltip-custom::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-super-dark);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.tooltip-custom::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    border: 5px solid transparent;
+    border-top-color: var(--primary-super-dark);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.tooltip-custom:hover::after,
+.tooltip-custom:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* GreenTech Brand Colors Utility Classes */
+.text-greentech-primary { color: var(--primary-super-dark); }
+.text-greentech-light { color: var(--green-spring); }
+.text-greentech-accent { color: var(--accent-medium); }
+
+.bg-greentech-primary { background-color: var(--primary-super-dark); }
+.bg-greentech-light { background-color: var(--green-spring); }
+.bg-greentech-accent { background-color: var(--accent-medium); }
+
+.border-greentech-primary { border-color: var(--primary-super-dark); }
+.border-greentech-light { border-color: var(--green-spring); }
+.border-greentech-accent { border-color: var(--accent-medium); }

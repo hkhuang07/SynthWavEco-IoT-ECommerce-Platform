@@ -1,0 +1,33 @@
+@extends('layouts.app')
+@section('content')
+<div class="card">
+    <div class="card-header">Add Category</div>
+    <div class="card-body">
+        <form action="{{ route('categories.add') }}" method="post">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label" for="name">Category name</label>
+                <input type="text" class="form-control" id="name" name="name" required />
+            </div>
+            <!--div class="mb-3">
+                <label class="form-label" for="slug">Slug name</label>
+                <input type="text" class="form-control" id="slug" name="slug" required />
+            </div-->
+            <div class="mb-3">
+                <label class="form-label" for="parent_id">Category Parent</label>
+                <select class="form-select" id="parent_id" name="parent_id">
+                    <option value="">-- Select Parent Category --</option>
+                    @foreach($parentCategories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input type="text" class="form-control" id="image" name="image" />
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa-light fa-save"></i> Add to Database</button>
+        </form>
+    </div>
+</div>
+@endsection

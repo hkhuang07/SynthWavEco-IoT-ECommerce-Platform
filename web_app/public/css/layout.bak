@@ -1,0 +1,872 @@
+/* ===================================
+   GREENTECH IoT AGRICULTURE THEME
+   Enhanced Gradient with Dark/Light Green Contrast
+   =================================== */
+
+:root {
+    /* Primary Colors - Dark Greens */
+    --primary-super-dark: #008B45;  /* SpringGreen4  */
+    --primary-dark: #3CB371;        /* MediumSpringGreen */
+    --primary-medium: #2E8B57;      /* SeaGreen */
+    
+    /* Primary Colors - Light Greens */
+    --primary-light: #00CD66;       /* SpringGreen3 */
+    --primary-lighter: #98FB98;     /* PaleGreen */
+    --primary-pale: #90EE90;        /* PaleGreen2 */
+    
+    /* Vibrant Accent Greens */
+    --green-spring: #00FF7F;        /* SpringGreen1 */
+    --green-spring2: #00EE76;       /* SpringGreen2 */
+    --green-lime: #32CD32;          /* LimeGreen */
+    --green-aqua: #7FFFD4;          /* Aquamarine1 */
+    --green-sea-light: #20B2AA;     /* LightSeaGreen */
+    --green-lawn: #7CFC00;          /* LawnGreen */
+    --green-medium-spring: #00FA9A; /* MediumSpringGreen */
+    
+    /* Secondary Colors - Blue Accent */
+    --accent-dark: #104E8B;         /* DodgerBlue4 */
+    --accent-medium: #1E90FF;       /* DodgerBlue1 */
+    --accent-light: #4682B4;        /* SteelBlue */
+    --accent-lighter: #B0E0E6;      /* PowderBlue */
+    
+    /* Light Mode Text Colors */
+    --text-dark: #000000;           /* Black */
+    --text-medium: #696969;         /* DimGray */
+    --text-light: #D3D3D3;          /* LightGray */
+    --text-green: #2E8B57;          /* SeaGreen */
+    --text-green-dark: #008B45;     /* SpringGreen4 */
+    
+    /* Dark Mode Text Colors */
+    --text-dm-primary: #E6E6FA;     /* Lavender */
+    --text-dm-secondary: #F0F8FF;   /* AliceBlue */
+    --text-dm-muted: #C6E2FF;       /* SlateGray1 */
+    --text-dm-ghost: #F8F8FF;       /* GhostWhite */
+    --text-dm-azure: #F0FFFF;       /* Azure1 */
+    
+    /* Backgrounds */
+    --bg-light: #F5F5F5;            /* WhiteSmoke */
+    --bg-dark: #1C1C1C;             /* Gray11 */
+    --bg-darker: #0A1F0A;
+    --bg-darkest: #041504;
+}
+
+/* ===================================
+   BODY AND GENERAL STYLES
+   =================================== */
+body {
+    background-color: var(--bg-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}   
+
+/* ===================================
+   NAVBAR HORIZONTAL - HIGH CONTRAST GRADIENT
+   =================================== */
+.navbar-custom {
+    /*background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-medium) 50%, 
+        var(--primary-light) 75%, 
+        var(--green-lime) 100%);*/
+        background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-medium) 50%, 
+        var(--primary-light) 75%, 
+        var(--green-lime) 100%);*
+    box-shadow: 0 4px 20px rgba(0, 100, 0, 0.4);
+    min-height: 60px;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--green-spring);
+}
+
+.navbar-custom .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-custom .navbar-brand i {
+    color: var(--green-spring);
+    filter: drop-shadow(0 0 3px rgba(0, 255, 127, 0.5));
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: white !important;
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.3) 0%, rgba(152, 251, 152, 0.2) 100%);
+    border-radius: 6px;
+    transform: translateY(-1px);
+}
+
+.navbar-custom .dropdown-menu {
+    background: linear-gradient(180deg, var(--primary-lighter) 0%, var(--primary-pale) 50%, #FFFFFF 100%);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 10px 30px rgba(0, 100, 0, 0.25);
+    border-radius: 10px;
+}
+
+.navbar-custom .dropdown-item {
+    color: var(--primary-super-dark);
+    transition: all 0.3s ease;
+    padding: 0.7rem 1rem;
+    font-weight: 500;
+}
+
+.navbar-custom .dropdown-item:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+    color: white;
+}
+
+.navbar-custom .navbar-toggler {
+    border: 2px solid var(--green-spring);
+    color: white;
+    background: rgba(0, 255, 127, 0.1);
+}
+
+/* Brand Text */
+.brand-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* ===================================
+   SIDEBAR TOGGLE BUTTON
+   =================================== */
+.sidebar-toggle {
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.2) 0%, rgba(152, 251, 152, 0.1) 100%);
+    border: 2px solid var(--green-spring);
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: scale(1.05);
+}
+
+/* ===================================
+   SEARCH FORM
+   =================================== */
+.search-form {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.search-form .form-control {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid var(--primary-light);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding-left: 1rem;
+}
+
+.search-form .form-control:focus {
+    border-color: var(--green-spring);
+    box-shadow: 0 0 0 4px rgba(0, 255, 127, 0.25);
+}
+
+.search-form .btn {
+    border-radius: 0 25px 25px 0;
+    border: 2px solid var(--primary-light);
+    border-left: none;
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 50%, var(--green-lime) 100%);
+    color: white;
+    padding: 0.375rem 1rem;
+}
+
+.search-form .btn:hover {
+    background: linear-gradient(135deg, var(--green-lime) 0%, var(--green-spring) 50%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+}
+
+/* ===================================
+   SIDEBAR STYLES - ENHANCED GRADIENT
+   =================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100vh;
+    z-index: 1050;
+    background: linear-gradient(180deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 30%, 
+        var(--primary-medium) 60%, 
+        var(--bg-darker) 100%);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    box-shadow: 4px 0 25px rgba(0, 100, 0, 0.4);
+    border-right: 3px solid var(--green-spring);
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+.sidebar .sidebar-nav {
+    padding-top: 65px; 
+}
+
+.sidebar-header {
+    padding: 1.2rem 1rem;
+    background: linear-gradient(135deg, 
+        var(--primary-light) 0%, 
+        var(--primary-medium) 50%, 
+        var(--primary-dark) 100%);
+    border-bottom: 3px solid var(--green-spring);
+}
+
+.sidebar-header h5 {
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header h5 i {
+    color: var(--green-spring);
+    margin-right: 8px;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 127, 0.6));
+}
+
+.sidebar-close {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 255, 127, 0.2) 100%);
+    border: 1px solid var(--green-spring);
+    color: white;
+    font-size: 1.1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-close:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: rotate(90deg);
+}
+
+.sidebar-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar-nav .nav-item {
+    border-bottom: 1px solid rgba(0, 255, 127, 0.15);
+}
+
+.sidebar-nav .nav-link {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-nav .nav-link:hover {
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 127, 0.25) 0%, 
+        rgba(152, 251, 152, 0.15) 50%, 
+        transparent 100%);
+    color: var(--green-spring);
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--green-spring);
+}
+
+.sidebar-nav .nav-link i {
+    width: 25px;
+    margin-right: 12px;
+    color: var(--primary-   );
+}
+
+.sidebar-nav .nav-link:hover i {
+    color: var(--green-spring);
+    filter: drop-shadow(0 0 3px rgba(0, 255, 127, 0.5));
+}
+
+/* ===================================
+   SIDEBAR SECTIONS
+   =================================== */
+.sidebar-section-title {
+    color: var(--green-aqua);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem 0.5rem;
+    margin: 0;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(127, 255, 212, 0.25);
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.3) 0%, transparent 100%);
+}
+
+/* ===================================
+   SIDEBAR DROPDOWNS
+   =================================== */
+.sidebar-dropdown {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sidebar-dropdown:hover {
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 127, 0.2) 0%, 
+        rgba(152, 251, 152, 0.1) 50%, 
+        transparent 100%);
+    color: var(--green-spring);
+}
+
+.sidebar-dropdown i {
+    width: 22px;
+    margin-right: 12px;
+    color: var(--primary-lighter);
+}
+
+.sidebar-dropdown:hover i {
+    color: var(--green-spring);
+}
+
+.sidebar-dropdown .dropdown-icon {
+    float: right;
+    transition: transform 0.3s ease;
+    color: var(--primary-lighter);
+}
+
+.sidebar-dropdown.collapsed .dropdown-icon {
+    transform: rotate(-90deg);
+}
+
+.sidebar-submenu {
+    background: linear-gradient(180deg, rgba(0, 100, 0, 0.3) 0%, rgba(0, 0, 0, 0.25) 100%);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.sidebar-submenu.show {
+    max-height: 500px;
+}
+
+.sidebar-submenu .nav-link {
+    padding-left: 3.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    border-left: 3px solid transparent;
+}
+
+.sidebar-submenu .nav-link:hover {
+    color: var(--green-spring);
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.15) 0%, transparent 100%);
+    border-left-color: var(--green-spring);
+}
+
+/* ===================================
+   OVERLAY
+   =================================== */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 100, 0, 0.5) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===================================
+   THEME AND LANGUAGE TOGGLES
+   =================================== */
+.theme-toggle,
+.lang-toggle {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.theme-toggle i,
+.lang-toggle i {
+    width: 22px;
+    margin-right: 12px;
+    color: var(--primary-lighter);
+}
+
+.theme-toggle:hover,
+.lang-toggle:hover {
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.2) 0%, transparent 100%);
+    color: var(--green-spring);
+}
+
+.theme-toggle:hover i,
+.lang-toggle:hover i {
+    color: var(--green-spring);
+}
+
+.modal-backdrop {
+    z-index: 1059 !important; /* Ngay dưới Modal */
+}
+
+/* Đảm bảo Modal nằm trên Backdrop */
+.modal {
+    z-index: 1060 !important; /* Cao hơn mọi thứ: Navbar (1030), Sidebar (1050), Backdrop (1059) */
+}
+
+
+/* ===================================
+   BADGE STYLES
+   =================================== */
+.badge-role {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-light) 100%);
+    color: var(--primary-super-dark);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 255, 127, 0.3);
+}
+
+/* ===================================
+   MAIN CONTENT
+   =================================== */
+.main-content {
+    transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: calc(100vh - 200px);
+}
+
+.main-content.sidebar-open {
+    margin-left: 400px;
+}
+
+@media (max-width: 768px) {
+    .main-content.sidebar-open {
+        margin-left: 0;
+    }
+}
+
+/* ===================================
+   FOOTER - FULL DESIGN WITH HIGH CONTRAST
+   =================================== */
+footer {
+    /*background: linear-gradient(135deg, 
+        var(--bg-darkest) 0%, 
+        var(--primary-super-dark) 25%, 
+        var(--primary-dark) 50%, 
+        var(--primary-medium) 75%, 
+        var(--bg-darker) 100%);*/
+    background: linear-gradient(135deg, 
+        var(--bg-dark) 0%, 
+        var(--primary-medium) 50%, 
+        var(--bg-darker) 100%);
+    color: var(--text-dm-primary);
+    margin-top: 2rem;
+    padding: 0;
+    border-top: 4px solid;
+    border-image: linear-gradient(90deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-lighter) 100%) 1;
+}
+
+.footer-service-intro {
+    background: linear-gradient(135deg, 
+        rgba(0, 100, 0, 0.253) 0%, 
+        rgba(0, 255, 127, 0.15) 50%, 
+        rgba(46, 139, 87, 0.3) 100%);
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 10px 40px rgba(0, 100, 0, 0.3);
+}
+
+.footer-service-intro h2 {
+    color: var(--green-spring);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.footer-service-intro h2 i {
+    color: var(--green-aqua);
+    filter: drop-shadow(0 0 5px rgba(127, 255, 212, 0.5));
+}
+
+.footer-service-intro p {
+    color: var(--text-dm-secondary);
+    line-height: 1.7;
+}
+
+.footer-service-intro .highlight {
+    color: var(--green-spring);
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 127, 0.3);
+}
+
+/* Footer Columns */
+.footer-column {
+    background: linear-gradient(135deg, 
+        rgba(0, 100, 0, 0.35) 0%, 
+        rgba(46, 139, 87, 0.25) 50%, 
+        rgba(0, 0, 0, 0.3) 100%);
+    border: 1px solid var(--primary-medium);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.footer-column h3 {
+    color: var(--green-spring);
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.footer-link-item {
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.4) 0%, rgba(46, 139, 87, 0.2) 100%);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color: var(--text-dm-muted);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.footer-link-item:hover {
+    color: var(--green-spring);
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.2) 0%, rgba(152, 251, 152, 0.1) 100%);
+    transform: translateX(5px);
+    border-left-color: var(--green-spring);
+}
+
+.footer-info-item {
+    background: linear-gradient(90deg, rgba(0, 100, 0, 0.35) 0%, rgba(46, 139, 87, 0.2) 100%);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    color: var(--text-dm-muted);
+}
+
+.footer-app-section {
+    text-align: center;
+}
+
+.footer-qr-placeholder {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 50%, var(--green-aqua) 100%);
+    border: 3px dashed var(--green-spring);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+    color: var(--primary-super-dark);
+    font-weight: bold;
+}
+
+.footer-app-button {
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 50%, var(--green-lime) 100%);
+    border: 2px solid var(--green-spring);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.25rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-app-button:hover {
+    background: linear-gradient(135deg, var(--green-spring) 0%, var(--green-lime) 50%, var(--primary-lighter) 100%);
+    color: var(--primary-super-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 255, 127, 0.4);
+}
+
+.footer-bottom {
+    border-top: 2px solid var(--primary-medium);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+    color: var(--text-dm-muted);
+}
+
+.footer-bottom-links a {
+    color: var(--green-spring);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    text-decoration: underline;
+    color: var(--green-aqua);
+    text-shadow: 0 0 8px rgba(0, 255, 127, 0.4);
+}
+
+.footer-company-info {
+    color: var(--text-dm-secondary);
+    font-weight: 500;
+}
+
+.footer-highlight {
+    color: var(--green-spring);
+    font-weight: 600;
+}
+
+/* ===================================
+   CUSTOM SCROLLBAR FOR SIDEBAR
+   =================================== */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--green-spring) 0%, var(--primary-light) 50%, var(--primary-medium) 100%);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--green-spring);
+}
+
+/* ===================================
+   DARK MODE STYLES
+   =================================== */
+.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .navbar-custom {
+    background: linear-gradient(135deg, 
+        #041504 0%, 
+        #0A2A0A 25%, 
+        var(--primary-super-dark) 50%, 
+        var(--primary-dark) 75%, 
+        #0D350D 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .sidebar {
+    background: linear-gradient(180deg, 
+        #041504 0%, 
+        #0A2A0A 30%, 
+        var(--primary-super-dark) 60%, 
+        #050F05 100%);
+}
+
+.dark-mode .dropdown-menu {
+    background: linear-gradient(180deg, #1A2A1A 0%, #0D1F0D 50%, #1C1C1C 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .dropdown-item {
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .dropdown-item:hover {
+    background: linear-gradient(90deg, var(--primary-super-dark) 0%, var(--primary-dark) 50%, var(--primary-medium) 100%);
+    color: white;
+}
+
+.dark-mode .search-form .form-control {
+    background-color: #1A2A1A;
+    border-color: var(--primary-dark);
+    color: var(--text-dm-primary);
+}
+
+.dark-mode .search-form .form-control::placeholder {
+    color: #6A8A6A;
+}
+
+.dark-mode footer {
+    background: linear-gradient(135deg, 
+        #020802 0%, 
+        #041504 25%, 
+        #0A2A0A 50%, 
+        var(--primary-super-dark) 75%, 
+        #050F05 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-service-intro {
+    background: linear-gradient(135deg, rgba(0, 50, 0, 0.4) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-column {
+    background: linear-gradient(135deg, rgba(0, 50, 0, 0.35) 0%, rgba(0, 100, 0, 0.2) 50%, rgba(0, 0, 0, 0.35) 100%);
+    border-color: var(--primary-dark);
+}
+
+.dark-mode .footer-link-item {
+    background: linear-gradient(90deg, rgba(0, 50, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.dark-mode .footer-link-item:hover {
+    background: linear-gradient(90deg, rgba(0, 255, 127, 0.15) 0%, rgba(0, 100, 0, 0.2) 100%);
+}
+
+.dark-mode .footer-info-item {
+    background: linear-gradient(90deg, rgba(0, 50, 0, 0.35) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.dark-mode .footer-bottom {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 50, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+    border-color: var(--primary-dark);
+}
+
+/* ===================================
+   RESPONSIVE ADJUSTMENTS
+   =================================== */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 0;
+    }
+
+    .search-form {
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .brand-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .brand-text {
+        font-size: 1rem;
+    }
+
+    .navbar-custom .navbar-brand i {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===================================
+   ANIMATION IMPROVEMENTS
+   =================================== */
+.navbar-custom .nav-link,
+.sidebar-nav .nav-link,
+.sidebar-dropdown,
+.theme-toggle,
+.lang-toggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility */
+.sidebar-toggle:focus,
+.sidebar-close:focus,
+.nav-link:focus,
+.sidebar-dropdown:focus {
+    outline: 2px solid var(--green-spring);
+    outline-offset: 2px;
+}
+
+/* Active/Click states */
+.nav-link:active,
+.sidebar-dropdown:active {
+    transform: scale(0.98);
+}
+
+/* ===================================
+   GRADIENT BANNER UTILITIES
+   =================================== */
+.banner-gradient-primary {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-medium) 50%, 
+        var(--primary-light) 75%, 
+        var(--green-lime) 100%);
+}
+
+.banner-gradient-spring {
+    background: linear-gradient(135deg, 
+        var(--primary-dark) 0%, 
+        var(--green-lime) 33%, 
+        var(--green-spring) 66%, 
+        var(--primary-lighter) 100%);
+}
+
+.banner-gradient-aqua {
+    background: linear-gradient(135deg, 
+        var(--primary-medium) 0%, 
+        var(--green-sea-light) 33%, 
+        var(--green-aqua) 66%, 
+        var(--primary-lighter) 100%);
+}
+
+.banner-gradient-contrast {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--green-spring) 25%, 
+        var(--primary-dark) 50%, 
+        var(--green-lime) 75%, 
+        var(--primary-medium) 100%);
+}
+
+.banner-gradient-mixed {
+    background: linear-gradient(135deg, 
+        var(--primary-super-dark) 0%, 
+        var(--primary-dark) 20%, 
+        var(--accent-dark) 40%, 
+        var(--primary-medium) 60%, 
+        var(--accent-medium) 80%, 
+        var(--primary-light) 100%);
+}

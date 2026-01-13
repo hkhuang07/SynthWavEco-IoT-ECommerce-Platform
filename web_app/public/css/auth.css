@@ -1,0 +1,830 @@
+/* Root Variables - Colors and Typography */
+:root {
+    --auth-primary: #228b22;
+    --auth-secondary: #2e8b57;
+    --auth-dark: #008b45;
+    --auth-input-bg: rgba(0, 0, 0, 0.9);
+    --auth-border: #32cd32;
+    --auth-focus: #00ff7f;
+    --auth-error: #ff3030;
+    --auth-success: #00cd00;
+    --auth-text: #f0fff0;
+    --auth-text-light: #e8f5e9;
+    --auth-bg-overlay: rgba(0, 0, 0, 0.9);
+    --auth-card-bg: rgba(255, 255, 255, 0.1);
+    --auth-card-border: rgba(255, 255, 255, 0.2);
+    --auth-shadow: 0 8px 32px 0 rgba(34, 139, 34, 0.37);
+}
+
+/* GreenTech Auth Container */
+.auth-container-greentech {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background with image and effects */
+.auth-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../images/loginbackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.auth-regis-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../images/registerbackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.auth-background::after,
+.auth-regis-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 139, 69, 0.9) 0%,
+        rgba(46, 139, 87, 0.6) 50%,
+        rgba(0, 255, 127, 0.3) 100%
+    );
+    z-index: -1;
+}
+
+/* ===== AUTH CARD LAYOUT ===== */
+.auth-card {
+    position: relative;
+    z-index: 10;
+    width: 95%;
+    max-width: 950px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--auth-shadow);
+    backdrop-filter: blur(16px);
+    background: var(--auth-card-bg);
+    border: 1px solid var(--auth-card-border);
+    display: flex;
+    min-height: 480px;
+}
+
+/* ===== WELCOME SECTION (LEFT) ===== */
+.auth-welcome {
+    position: relative;
+    display: none;
+    width: 42%;
+    background-image: url("../images/loginbanner.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-regis-welcome {
+    position: relative;
+    display: none;
+    width: 42%;
+    background-image: url("../images/registerbanner.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.welcome-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 139, 69, 0.8) 0%,
+        rgba(25, 77, 32, 0.5) 50%,
+        rgba(3, 43, 23, 0.3) 100%
+    );
+    backdrop-filter: blur(2px);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--auth-text);
+    padding: 1rem;
+}
+
+/* Tiêu đề: Chữ xanh viền trắng */
+.welcome-content h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: aliceblue;
+    line-height: 1.2;
+}
+
+/* Slogan: Chữ trắng */
+.welcome-motto {
+    font-size: 1rem;
+    font-style: italic;
+    color: aliceblue;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
+}
+
+/* ===== FORM SECTION (RIGHT) ===== */
+.auth-form-section {
+    width: 58%;
+    padding: 2.5rem 3rem;
+    background: linear-gradient(to right, transparent, #008b45);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0 12px 12px 0;
+    position: relative;
+}
+
+/* Form Header with Logo and Title */
+.auth-form-header {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.navbar {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+/* Logo và tiêu đề GreenTech cạnh logo */
+.auth-logo-greentech img {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 2px solid var(--auth-primary);
+    box-shadow: 0 2px 8px rgba(0, 255, 127, 0.3);
+}
+
+.greentech-title-header {
+    color: aquamarine !important;
+    text-shadow: -1.5px -1.5px 0 var(--auth-primary),
+        1.5px -1.5px 0 var(--auth-primary), -1.5px 1.5px 0 var(--auth-primary),
+        1.5px 1.5px 0 var(--auth-primary);
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Register/Login link */
+.register-link {
+    color: lavender !important;
+    text-decoration: none;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.register-link:hover {
+    color: var(--auth-focus) !important;
+}
+
+/* Form Title */
+.auth-form-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 4.5rem 0 1.25rem 0;
+    color: #e8f5e9;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* Input Groups */
+.auth-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 0.7rem;
+    color: var(--auth-text-light);
+    font-size: 0.95rem;
+    z-index: 2;
+}
+
+.auth-input {
+    width: 100%;
+    background: var(--auth-input-bg);
+    color: white;
+    padding: 0.65rem 0.7rem 0.65rem 2.3rem;
+    border: 1px solid var(--auth-border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.auth-input::placeholder {
+    color: var(--auth-text-light);
+    opacity: 0.7;
+}
+
+.auth-input:focus {
+    border-color: var(--auth-focus);
+    box-shadow: 0 0 0 2px rgba(0, 255, 127, 0.2);
+}
+
+.auth-input-error {
+    border-color: var(--auth-error);
+}
+
+.auth-input-error:focus {
+    box-shadow: 0 0 0 2px rgba(255, 48, 48, 0.2);
+}
+
+/* Form Links */
+.auth-form-links {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.auth-link {
+    color: aquamarine !important;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: var(--auth-focus) !important;
+}
+
+/* Remember Me */
+.auth-remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.65rem;
+}
+
+.auth-remember input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: var(--auth-primary);
+    transform: scale(1.05);
+}
+
+.auth-remember-label {
+    font-size: 0.85rem;
+    color: var(--auth-text-light);
+    cursor: pointer;
+}
+
+/* ===== BUTTON STYLING ===== */
+.auth-btn-login {
+    width: 100%;
+    padding: 0.65rem;
+    background: linear-gradient(
+        to left,
+        var(--auth-primary),
+        var(--auth-secondary)
+    );
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 42px;
+    position: relative;
+}
+
+.auth-btn-login:hover:not(:disabled) {
+    background: linear-gradient(
+        to right,
+        rgba(1, 28, 7, 0.9) 0%,
+        rgba(86, 212, 141, 0.6) 50%,
+        rgba(12, 200, 87, 0.878) 100%
+    );
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+}
+
+.auth-btn-login:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.auth-btn-login.auth-btn-loading {
+    opacity: 0.8;
+}
+
+.btn-loading {
+    display: none;
+}
+
+#btn-total-display {
+    background: linear-gradient(
+        to right,
+        rgba(1, 28, 7, 0.9) 0%,
+        rgba(86, 212, 141, 0.6) 50%,
+        rgba(12, 200, 87, 0.878) 100%
+    )!important;
+}
+
+.auth-btn-login.auth-btn-loading .btn-loading {
+    display: inline;
+}
+
+.auth-btn-login.auth-btn-loading .btn-text {
+    display: none;
+}
+
+/* ===== MESSAGES ===== */
+.auth-message {
+    margin-top: 0.5rem;
+    padding: 0.55rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.auth-error {
+    color: #000000;
+    background: var(--auth-error);
+}
+
+.auth-success {
+    color: #000000;
+    background: var(--auth-success);
+}
+
+/* ===== REGISTER TEXT ===== */
+.auth-register-text {
+    margin-top: 0.85rem;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.auth-register-text a {
+    color: aquamarine !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Copyright Text */
+.auth-copyright-text {
+    margin-top: 0.85rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--auth-text-light);
+}
+
+.auth-copyright-text a {
+    color: #7fffd4 !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-copyright-text a:hover {
+    color: var(--auth-focus) !important;
+}
+
+/* ===== SOCIAL LOGIN STYLING ===== */
+.social-login-section {
+    margin-top: 1.25rem;
+}
+
+.social-login-divider {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.social-login-divider span {
+    padding: 0 1rem;
+    color: var(--auth-text-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.social-login-buttons {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0.85rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--auth-focus);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Icon cho social buttons */
+.social-btn i {
+    font-size: 1.2rem;
+}
+
+.btn-google i {
+    color: #ea4335;
+}
+
+.btn-facebook i {
+    color: #1877f2;
+}
+
+.btn-apple i {
+    color: #ffffff;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Desktop: Two-column layout */
+@media (min-width: 768px) {
+    .auth-welcome,
+    .auth-regis-welcome {
+        display: flex;
+    }
+}
+
+/* Tablet breakpoint (max-width: 767px) */
+@media (max-width: 767px) {
+    .auth-container-greentech {
+        padding: 0.5rem;
+    }
+
+    .auth-card {
+        flex-direction: column;
+        max-width: 550px;
+    }
+
+    .auth-welcome,
+    .auth-regis-welcome {
+        display: none;
+    }
+
+    .auth-form-section {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .auth-form-title {
+        margin-top: 4rem;
+    }
+
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+
+    .welcome-motto {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile breakpoint (max-width: 575px) */
+@media (max-width: 575px) {
+    .auth-container-greentech {
+        padding: 0.25rem;
+        min-height: 100vh;
+    }
+
+    .auth-card {
+        max-width: 100%;
+        min-height: auto;
+    }
+
+    .auth-form-section {
+        padding: 1.5rem 1rem;
+        border-radius: 8px;
+    }
+
+    .auth-form-title {
+        font-size: 1.2rem;
+        margin-top: 4rem;
+    }
+
+    .auth-input {
+        padding: 0.6rem 0.6rem 0.6rem 2.3rem;
+        font-size: 0.85rem;
+    }
+
+    .auth-btn-login {
+        padding: 0.6rem;
+        min-height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .social-login-buttons {
+        flex-direction: column;
+    }
+
+    .greentech-title-header {
+        font-size: 1.35rem !important;
+    }
+
+    .register-link {
+        font-size: 1.35rem !important;
+    }
+}
+
+/* Small mobile breakpoint (max-width: 480px) */
+@media (max-width: 480px) {
+    .auth-container-greentech {
+        padding: 0;
+    }
+
+    .auth-form-section {
+        padding: 1.25rem 0.75rem;
+        border-radius: 0;
+    }
+
+    .auth-card {
+        border-radius: 0;
+        min-height: 100vh;
+    }
+
+    .auth-form-title {
+        font-size: 1.1rem;
+    }
+
+    .auth-input {
+        font-size: 0.8rem;
+    }
+
+    .auth-remember-label,
+    .auth-link,
+    .auth-register-text {
+        font-size: 0.8rem;
+    }
+
+    .auth-btn-login {
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Apply animations */
+.auth-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.auth-form-section {
+    animation: slideIn 0.6s ease-out;
+}
+
+.btn-loading i {
+    animation: spin 1s linear infinite;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.d-none {
+    display: none;
+}
+
+/* Form validation states */
+.auth-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--auth-error);
+}
+
+.auth-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: #22c55e;
+}
+
+/* Focus styles for keyboard navigation */
+.auth-input:focus,
+.auth-btn-login:focus,
+.auth-link:focus,
+.auth-remember input:focus {
+    outline: 2px solid var(--auth-focus);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .auth-card {
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid white;
+    }
+
+    .auth-input {
+        border-width: 2px;
+    }
+
+    .auth-btn-login {
+        border: 2px solid white;
+    }
+}
+
+/* Enhanced form styling */
+.form-control-lg.auth-input {
+    background: var(--auth-input-bg);
+    border: 1px solid var(--auth-border);
+    color: white;
+}
+
+.form-control-lg.auth-input:focus {
+    border-color: var(--auth-focus);
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 127, 0.25);
+}
+
+/* Bootstrap compatibility */
+.password-toggle {
+    position: relative;
+}
+
+.password-toggle .form-control {
+    padding-right: 3rem;
+}
+
+.password-toggle-button {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--auth-text-light);
+    cursor: pointer;
+    padding: 0.25rem;
+    z-index: 2;
+}
+
+.password-toggle-button:hover {
+    color: #00ff7f;
+}
+
+/* Alert styling for Bootstrap compatibility */
+.alert {
+    margin-bottom: 0.85rem;
+}
+
+.alert-danger {
+    background-color: rgba(255, 48, 48, 0.1);
+    border: 1px solid rgba(255, 48, 48, 0.3);
+    color: #ff3030;
+}
+
+.alert-success {
+    background-color: rgba(0, 205, 0, 0.1);
+    border: 1px solid rgba(0, 205, 0, 0.3);
+    color: #00cd00;
+}
+
+/* Nav link styling */
+.nav-link {
+    color: #00ff7f;
+    text-decoration: underline;
+}
+
+.nav-link:hover {
+    color: #32cd32;
+}
+
+/* Checkbox styling */
+.form-check-input:checked {
+    background-color: var(--auth-primary);
+    border-color: var(--auth-primary);
+}
+
+.form-check-label {
+    color: var(--auth-text-light);
+    font-size: 0.85rem;
+}
+
+/* Footer text */
+.fs-xs {
+    font-size: 0.8rem;
+    color: var(--auth-text-light);
+}
+
+.fs-xs a {
+    color: #7fffd4 !important;
+    font-weight: 600;
+}
+
+.fs-xs a:hover {
+    color: var(--auth-focus) !important;
+}

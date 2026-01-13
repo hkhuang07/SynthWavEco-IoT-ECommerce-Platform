@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'GreenTech') }}</title>
+
+    <!-- Bootstrap 5.3.8 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('public/css/layout.css') }}" />
+
+    @yield('styles')
+</head>
+
+<body>
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header p-3 border-bottom">
+            <h5 class="mb-0">
+                <i class="fas fa-microchip text-primary"></i> {{ config('app.name', 'GreenTech') }}
+                <button class="sidebar-close btn btn-link float-end" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </h5>
+        </div>
+
+        <ul class="sidebar-nav list-unstyled p-3">
+            @guest
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="{{ route('user.login') }}">
+                    <i class="fas fa-sign-in-alt me-2"></i> Login
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="{{ route('user.register') }}">
+                    <i class="fas fa-user-plus me-2"></i> Register
+                </a>
+            </li>
+            @else
+            <li class="nav-item mb-2">
+                <div class="nav-link">
+                    <i class="fas fa-user-circle me-2"></i>
+                    {{ Auth::user()->name }}
+                    <span class="badge bg-primary ms-2">{{ Auth::user()->role->name ?? '' }}</span>
+                </div>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();">
+                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
+                </a>
+                <form id="logout-form-sidebar" action="{{ route('user.logout') }}" method="post" class="d-none">
+                    @csrf
+                </form>
+            </li>
+            @endguest
+
+            <li>
+                <hr class="my-3">
+            </li>
+
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.home') }}">
+                    <i class="fas fa-home me-2"></i> Home
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="#">
+                    <i class="fas fa-store me-2"></i> Shop
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" href="#">
+                    <i class="fas fa-info-circle me-2"></i> About Us
+                </a>
+            </li>
+
+            <li>
+                <hr class="my-3">
+            </li>
+
+            <!-- User Management -->
+            <li class="nav-item mb-2">
+                <div class="nav-link fw-bold text-primary">
+                    <i class="fas fa-users-cog me-2"></i> Administration
+                </div>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.users') }}">
+                    <i class="fas fa-users me-2"></i> User Management
+                </a>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.roles') }}">
+                    <i class="fas fa-user-shield me-2"></i> Roles Management
+                </a>
+            </li>
+
+            <!-- Categories -->
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.categories') }}">
+                    <i class="fas fa-list me-2"></i> Categories
+                </a>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.manufacturers') }}">
+                    <i class="fas fa-copyright me-2"></i> Manufacturers
+                </a>
+            </li>
+
+            <!-- Product Management -->
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.products') }}">
+                    <i class="fas fa-cube me-2"></i> All Products
+                </a>
+            </li>
+
+            <!-- Order Management -->
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.orders') }}">
+                    <i class="fas fa-shopping-cart me-2"></i> All Orders
+                </a>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.order_statuses') }}">
+                    <i class="fas fa-list-check me-2"></i> Order Status
+                </a>
+            </li>
+
+            <!-- IoT Management -->
+            <li class="nav-item mb-1 ms-3">
+                <a class="nav-link d-flex align-items-center" href="{{ route('administrator.iot_devices') }}">
+                    <i class="fas fa-network-wired me-2"></i> IoT Devices
+                </a>
+            </li>
+
+            <li>
+                <hr class="my-3">
+            </li>
+
+            <!-- Settings -->
+            <li class="nav-item mb-2">
+                <div class="nav-link fw-bold text-primary">
+                    <i class="fas fa-cog me-2"></i> Settings
+                </div>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <button class="btn btn-link nav-link d-flex align-items-center w-100 text-start" onclick="toggleTheme()">
+                    <i class="fas fa-adjust me-2"></i> <span id="themeText">Dark Mode</span>
+                </button>
+            </li>
+            <li class="nav-item mb-1 ms-3">
+                <button class="btn btn-link nav-link d-flex align-items-center w-100 text-start" onclick="toggleLanguage()">
+                    <i class="fas fa-language me-2"></i> <span id="langText">Vietnamese</span>
+                </button>
+            </li>
+            <li class="nav-item mb-2 ms-3">
+                <a class="nav-link d-flex align-items-center" href="#">
+                    <i class="fas fa-question-circle me-2"></i> Help Center
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hidden logout form -->
+    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" id="mainNavbar">
+        <div class="container-fluid">
+            <!-- Sidebar toggle button -->
+            <button class="btn btn-link sidebar-toggle me-3" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('administrator.home') }}">
+                <i class="fas fa-microchip text-primary me-2"></i>
+                <span class="brand-text fw-bold">{{ config('app.name', 'GreenTech') }}</span>
+            </a>
+
+            <!-- Mobile menu toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Main navigation -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" href="{{ route('administrator.home') }}">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-link nav-link d-flex align-items-center" onclick="toggleTheme()">
+                            <i class="fas fa-adjust me-1"></i> <span id="themeTextNav">Dark</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-link nav-link d-flex align-items-center" onclick="toggleLanguage()">
+                            <i class="fas fa-language me-1"></i> <span id="langTextNav">VI</span>
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Search form -->
+                <form class="d-flex me-3">
+                    <input class="form-control form-control-sm" type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-secondary btn-sm" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+
+                <!-- User menu -->
+                <ul class="navbar-nav">
+                    @guest
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i> Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('user.login') }}">
+                                    <i class="fas fa-sign-in-alt me-2"></i> Log In
+                                </a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.register') }}">
+                                    <i class="fas fa-user-plus me-2"></i> Register
+                                </a></li>
+                        </ul>
+                    </li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-user me-2"></i> Profile
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog me-2"></i> Settings
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('user.logout') }}"
+                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
+                                </a></li>
+                        </ul>
+                    </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="container-fluid p-3">
+            @yield('content')
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-4 border-top bg-light">
+        <div class="container">
+            <div class="text-center">
+                <p class="mb-2">&copy; {{ date('Y') }} {{ config('app.name', 'GreenTech') }} by Huynh Quoc Huy. All rights reserved.</p>
+                <p class="mb-0 text-muted">
+                    <i class="fas fa-building me-1"></i>
+                    {{ config('app.name', 'GreenTech') }} Technology Company Limited |
+                    <i class="fas fa-map-marker-alt me-1"></i>
+                    Long Xuyen City, An Giang, VietNam |
+                    <i class="fas fa-envelope me-1"></i>
+                    greentech@gmail.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript cho sidebar và các tính năng khác -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+            function openSidebar() {
+                sidebar.classList.add('show');
+                sidebarOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('show');
+                sidebarOverlay.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Event listeners
+            sidebarToggle.addEventListener('click', openSidebar);
+            sidebarClose.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                    closeSidebar();
+                }
+            });
+
+            // Theme toggle functionality
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+            function toggleTheme() {
+                isDarkMode = !isDarkMode;
+                localStorage.setItem('darkMode', isDarkMode);
+                updateTheme();
+            }
+
+            function updateTheme() {
+                const themeText = document.getElementById('themeText');
+                const themeTextNav = document.getElementById('themeTextNav');
+
+                if (isDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    if (themeText) themeText.textContent = 'Light Mode';
+                    if (themeTextNav) themeTextNav.textContent = 'Light';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    if (themeText) themeText.textContent = 'Dark Mode';
+                    if (themeTextNav) themeTextNav.textContent = 'Dark';
+                }
+            }
+
+            // Language toggle functionality
+            let isVietnamese = localStorage.getItem('language') === 'vi';
+
+            function toggleLanguage() {
+                isVietnamese = !isVietnamese;
+                localStorage.setItem('language', isVietnamese ? 'vi' : 'en');
+                updateLanguage();
+            }
+
+            function updateLanguage() {
+                const langText = document.getElementById('langText');
+                const langTextNav = document.getElementById('langTextNav');
+
+                if (isVietnamese) {
+                    if (langText) langText.textContent = 'English';
+                    if (langTextNav) langTextNav.textContent = 'EN';
+                } else {
+                    if (langText) langText.textContent = 'Vietnamese';
+                    if (langTextNav) langTextNav.textContent = 'VI';
+                }
+            }
+
+            // Initialize
+            updateTheme();
+            updateLanguage();
+
+            // Make functions globally available
+            window.toggleTheme = toggleTheme;
+            window.toggleLanguage = toggleLanguage;
+        });
+    </script>
+
+    @yield('scripts')
+</body>
+
+</html>

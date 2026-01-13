@@ -1,0 +1,102 @@
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Manufacturer;
+use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\View\View;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
+class HomeController extends Controller
+{
+
+    public function getHome()
+    {
+        $manufactures = Manufacturer::orderBy('name')->get();
+
+        $categories = Category::with([
+            'Product' => function ($query) {
+                $query->latest()->take(8);
+            }
+        ])->get();
+        return view('frontend.home', compact('categories', 'manufactures'));
+    }
+
+    public function getProducts($categoryname_slug = '')
+    {
+        // Bổ sung code tại đây
+        return view('frontend.products');
+    }
+    public function getProduct_Details($categoryname_slug = '', $productname_slug = '')
+    {
+        // Bổ sung code tại đây
+        return view('frontend.product_details');
+    }
+    public function getArticles($topicname_slug = '')
+    {
+        // Bổ sung code tại đây
+        return view('frontend.articles');
+    }
+    public function getArticle_Details($topicname_slug = '', $title_slug = '')
+    {
+        // Bổ sung code tại đây
+        return view('frontend.article_details');
+    }
+    public function getShoppingCard()
+    {
+        if (Cart::count() > 0)
+            return view('frontend.shoppingcard');
+        else
+            return view('frontend.shoppingcard');
+    }
+
+    public function getCard_Add($productname_slug = '')
+    {
+        return redirect()->route('frontend.home');
+    }
+    public function getCard_Delete($row_id)
+    {
+        Cart::remove($row_id);
+        return redirect()->route('frontend.shoppingcard');
+    }
+    public function getCard_Decrease($row_id)
+    {
+        $row = Cart::get($row_id);
+        // Nếu số lượng là 1 thì không giảm được nữa
+        if ($row->qty > 1) {
+            Cart::update($row_id, $row->qty - 1);
+        }
+        return redirect()->route('frontend.shoppingcard');
+    }
+    public function getCard_Increase($row_id)
+    {
+        $row = Cart::get($row_id);
+        // Không được tăng vượt quá 10 sản phẩm
+        if ($row->qty < 10) {
+            Cart::update($row_id, $row->qty + 1);
+        }
+        return redirect()->route('frontend.shoppingcard');
+    }
+
+    public function getRecruitment()
+    {
+        return view('frontend.recruitment');
+    }
+    public function getContact()
+    {
+        return view('frontend.contact');
+    }
+    // Trang đăng ký dành cho khách hàng
+    public function getRegister()
+    {
+        return view('user.register');
+    }
+    // Trang đăng nhập dành cho khách hàng
+    public function getLogin()
+    {
+        return view('user.login');
+    }
+}

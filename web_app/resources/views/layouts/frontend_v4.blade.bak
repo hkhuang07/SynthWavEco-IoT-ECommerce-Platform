@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light" data-pwa="true">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <title>@yield('title', 'Home Page') - {{ config('app.name', 'GreenTech') }}</title>
+
+    <link rel="icon" type="image/jpg" href="{{ asset('public/images/greentech-logo.jpg') }}" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{{ asset('public/images/greentech-logo.jpg') }}" />
+
+    <script src="{{ asset('public/assets/js/theme-switcher.js') }}"></script>
+
+    <link rel="preload" href="{{ asset('public/assets/fonts/inter-variable-latin.woff2') }}" as="font" type="font/woff2" crossorigin />
+
+    <link rel="preload" href="{{ asset('public/assets/icons/cartzilla-icons.woff2') }}" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="{{ asset('public/assets/icons/cartzilla-icons.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('public/assets/vendor/swiper/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/vendor/simplebar/simplebar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/vendor/choices.js/choices.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/vendor/flatpickr/flatpickr.min.css') }}" />
+    <link rel="preload" href="{{ asset('public/assets/css/theme.min.css') }}" as="style" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/theme.min.css') }}" id="theme-styles" />
+    
+    <link rel="stylesheet" href="{{ asset('public/css/layout.css') }}" /> 
+
+    @yield('css')
+</head>
+
+<body>
+    <div class="offcanvas offcanvas-top" id="searchBox" data-bs-backdrop="static" tabindex="-1">
+        <div class="offcanvas-header border-bottom p-0 py-lg-1">
+            <form class="container d-flex align-items-center search-form" action="{{ route('frontend.products') }}" method="GET">
+                <input type="search" name="search" class="form-control form-control-lg fs-lg border-0 rounded-0 py-3 ps-0" placeholder="What are you looking for?" data-autofocus="offcanvas" />
+                <button type="reset" class="btn-close fs-lg" data-bs-dismiss="offcanvas"></button>
+            </form>
+        </div>
+        <div class="offcanvas-body px-0">
+            <div class="container text-center">
+                <i class="fas fa-search fa-3x text-body-tertiary opacity-60 mb-4"></i>
+                <h6 class="mb-2">Search results will appear here</h6>
+                <p class="fs-sm mb-0">Start typing in the search box to see immediate results.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end pb-sm-2 px-sm-2" id="shoppingCart" tabindex="-1" style="width:500px">
+        </div>
+
+    <header class="navbar navbar-expand-lg navbar-sticky sticky-top z-fixed navbar-custom" data-sticky-element>
+        <div class="container flex-nowrap">
+            <button type="button" class="navbar-toggler me-4 me-lg-0" data-bs-toggle="offcanvas" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand py-1 py-md-2 py-xl-1 d-flex align-items-center" href="{{ route('frontend.home') }}">
+                <span class="d-none d-sm-flex flex-shrink-0 text-primary me-2">
+                    <img src="{{ asset('public/images/greentech-logo.jpg') }}"
+                        alt="{{ config('app.name', 'GreenTech') }} Logo"
+                        loading="lazy"
+                        style="width: 36px; height: 36px; object-fit: contain;">
+                </span>
+                <span class="fw-bold brand-text">{{ config('app.name', 'GreenTech') }}</span>
+            </a>
+
+            <nav class="offcanvas offcanvas-start sidebar" id="navbarNav" tabindex="-1">
+                <div class="offcanvas-header py-3 sidebar-header">
+                    <h5 class="offcanvas-title" id="navbarNavLabel"><i class="fas fa-leaf"></i>{{ config('app.name', 'GreenTech') }}</h5>
+                    <button type="button" class="btn-close sidebar-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body pt-3 pb-4 py-lg-0 mx-lg-auto sidebar-nav">
+                    <ul class="navbar-nav position-relative">
+                        <li class="nav-item py-lg-2 me-lg-n2 me-xl-0">
+                            <a class="nav-link d-flex align-items-center" href="{{ route('frontend.home') }}">
+                                <i class="ci-home me-2"></i>Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown py-lg-2 me-lg-n1 me-xl-0">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="{{ route('frontend.products') }}" role="button" data-bs-toggle="dropdown" data-bs-trigger="hover" data-bs-auto-close="outside">
+                                <i class="ci-gift me-2"></i>Products
+                            </a>
+                            <ul class="dropdown-menu" style="--cz-dropdown-spacer:.875rem">
+                                @if(isset($globalCategories))
+                                @foreach($globalCategories as $category)
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('frontend.products.categories', ['categoryname_slug' => $category->slug]) }}">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
+                                @endforeach
+                                @else
+                                <li><a class="dropdown-item" href="#">No Categories</a></li>
+                                @endif
+                            </ul>
+                        </li>
+
+                        <li class="nav-item py-lg-2 me-lg-n2 me-xl-0">
+                            <a class="nav-link d-flex align-items-center" href="{{ route('frontend.recruitment') }}">
+                                <i class="ci-target me-2"></i>Recruitment
+                            </a>
+                        </li>
+                        <li class="nav-item py-lg-2 me-lg-n2 me-xl-0">
+                            <a class="nav-link d-flex align-items-center" href="{{ route('frontend.contact') }}">
+                                <i class="ci-chat me-2"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="offcanvas-header nav border-top px-0 py-3 mt-3 d-md-none">
+                    <a class="nav-link justify-content-center w-100 d-flex align-items-center" href="{{ route('user.home') }}">
+                        <i class="ci-user fs-lg opacity-60 ms-n2 me-2"></i>
+                        My Account
+                    </a>
+                </div>
+            </nav>
+
+            <div class="d-flex align-items-center">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-icon btn-lg btn-outline-secondary fs-lg border-0 rounded-circle animate-scale" data-bs-toggle="dropdown">
+                        <span class="theme-icon-active d-flex animate-target">
+                            <i class="ci-sun"></i>
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu" style="--cz-dropdown-min-width:9rem">
+                        <li>
+                            <button type="button" class="dropdown-item active" data-bs-theme-value="light">
+                                <span class="theme-icon d-flex fs-base me-2"><i class="ci-sun"></i></span>
+                                <span class="theme-label">Light</span>
+                                <i class="item-active-indicator ci-check ms-auto"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+                                <span class="theme-icon d-flex fs-base me-2"><i class="ci-moon"></i></span>
+                                <span class="theme-label">Dark</span>
+                                <i class="item-active-indicator ci-check ms-auto"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item" data-bs-theme-value="auto">
+                                <span class="theme-icon d-flex fs-base me-2"><i class="ci-auto"></i></span>
+                                <span class="theme-label">Auto</span>
+                                <i class="item-active-indicator ci-check ms-auto"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <button type="button" class="btn btn-icon btn-lg fs-xl btn-outline-secondary border-0 rounded-circle animate-shake" data-bs-toggle="offcanvas" data-bs-target="#searchBox">
+                    <i class="ci-search animate-target"></i>
+                </button>
+
+                <div class="dropdown d-none d-md-inline-flex">
+                    <button type="button"
+                        class="btn btn-icon btn-lg fs-lg btn-outline-secondary border-0 rounded-circle animate-shake"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="ci-user animate-target"></i>
+                        <span class="visually-hidden">Account</span>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end" style="--cz-dropdown-min-width:14rem">
+                        @auth
+                        <li class="dropdown-header">
+                            <div class="fw-medium text-dark-emphasis">{{ Auth::user()->name }}</div>
+                            <div class="small text-muted">{{ Auth::user()->email }}</div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.home') }}">
+                                <i class="ci-home opacity-60 me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile') }}">
+                                <i class="ci-settings opacity-60 me-2"></i>Profile Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.change-password') }}">
+                                <i class="ci-lock opacity-60 me-2"></i>Change Password
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="ci-logout opacity-60 me-2"></i>Sign Out
+                            </a>
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                        @endauth
+
+                        @guest
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.login') }}">
+                                <i class="ci-login opacity-60 me-2"></i>Sign In
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('user.register') }}">
+                                <i class="ci-user-plus opacity-60 me-2"></i>Register
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('password.request') }}">
+                                <i class="ci-key opacity-60 me-2"></i>Forgot Password
+                            </a>
+                        </li>
+                        @endguest
+                    </ul>
+                </div>
+
+                <button type="button" class="btn btn-icon btn-lg fs-xl btn-outline-secondary position-relative border-0 rounded-circle animate-scale" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart">
+                    <span class="position-absolute top-0 start-100 badge fs-xs text-bg-primary rounded-pill mt-1 ms-n4 z-2" style="--cz-badge-padding-y:.25em; --cz-badge-padding-x:.42em">{{ Cart::count() ?? 0 }}</span>
+                    <i class="ci-shopping-bag animate-target me-1"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container main-content">
+        @yield('content')
+    </main>
+
+    <footer class="footer pb-4">
+        </footer>
+
+    <div class="floating-buttons position-fixed top-50 end-0 z-sticky me-3 me-xl-4 pb-4">
+        </div>
+
+    @yield('floating-button')
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar-sticky');
+            const mainContent = document.querySelector('.main-content');
+
+            if (navbar) {
+                // Ensure navbar is always sticky in the correct position
+                navbar.style.position = 'sticky';
+                navbar.style.top = '0';
+                navbar.style.zIndex = '9999';
+                navbar.style.width = '100%';
+                
+                // 💥 Kích hoạt class CSS cho Navbar
+                navbar.classList.add('navbar-custom'); 
+
+                console.log('✅ Navbar Fix: Frontend navbar initialized successfully');
+            } else {
+                console.warn('⚠️ Navbar Fix: Frontend navbar not found');
+            }
+
+            // Handle resize for responsive behavior
+            window.addEventListener('resize', function() {
+                if (navbar) {
+                    const offcanvas = document.querySelector('.offcanvas-start');
+                    if (offcanvas && window.innerWidth <= 991) {
+                        offcanvas.style.width = '280px';
+                    }
+                }
+            });
+
+            // Ensure main content is not hidden by the navbar
+            if (mainContent) {
+                // Add padding-top to prevent navbar overlap
+                const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                mainContent.style.paddingTop = '2rem';
+                mainContent.style.marginTop = '0';
+
+                console.log(`✅ Content Fix: Added padding-top ${navbarHeight + 32}px to main content`);
+            }
+
+            // Theme switcher functionality (Giữ nguyên)
+            // ... (Theme switcher code) ...
+        });
+
+        // Additional fix for scroll behavior
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-sticky');
+            if (navbar && window.scrollY > 10) {
+                // Remove default styling when sticky state changes (if needed)
+            } else if (navbar) {
+                // Restore default styling
+            }
+        });
+    </script>
+
+    @yield('javascript')
+</body>
+
+</html>

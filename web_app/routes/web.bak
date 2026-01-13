@@ -1,0 +1,181 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ManufacturesController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\IoTDevicesController;
+use App\Http\Controllers\DeviceMetricController;
+use App\Http\Controllers\AlertThresholdsController;
+use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\SalerController;
+use App\Http\Controllers\ShipperController;
+
+/*/ Google OAuth
+Route::get('/login/google', [HomeController::class, 'getGoogleLogin'])->name('google.login');
+Route::get('/login/google/callback', [HomeController::class, 'getGoogleCallback'])->name('google.callback');
+*/
+
+//Login, Register, Logout, Forgot Password routes
+Auth::routes();
+
+// Pages for logged-out guests
+Route::name('frontend.')->group(function () {
+    // Trang chủ
+    Route::get('/', [HomeController::class, 'getHome'])->name('home');
+    Route::get('/home', [HomeController::class, 'getHome'])->name('home');
+    // Trang sản phẩm
+    Route::get('/products', [HomeController::class, 'getProducts'])->name('products');
+    Route::get('/products/{categoryname_slug}', [HomeController::class, 'getProducts'])->name('products.categories');
+    Route::get('/products/{categoryname_slug}/{productname_slug}', [HomeController::class, 'getProduct_Details'])->name('products.details');
+    // Tin tức
+    Route::get('/articles', [HomeController::class, 'getArticles'])->name('articles');
+    Route::get('/articles/{topicname_slug}', [HomeController::class, 'getArticles'])->name('articles.topics');
+    Route::get('/articles/{topicname_slug}/{title_slug}', [HomeController::class, 'getArticle_Details'])->name('article.details');
+    // Trang giỏ hàng
+    Route::get('/shoppingcard', [HomeController::class, 'getShoppingCard'])->name('shoppingcard');
+    Route::get('/shoppingcard/add/{productname_slug}', [HomeController::class, 'getCard_Add'])->name('shoppingcard.add');
+    Route::get('/shoppingcard/delete/{row_id}', [HomeController::class, 'getCard_Delete'])->name('shoppingcard.delete');
+    Route::get('/shoppingcard/decrease/{row_id}', [HomeController::class, 'getCard_Decrease'])->name('shoppingcard.decrease');
+    Route::get('/shoppingcard/increase/{row_id}', [HomeController::class, 'getCard_Increase'])->name('shoppingcard.increase');
+    Route::post('/shoppingcard/update/{row_id}', [HomeController::class, 'updateCartQuantity'])->name('shoppingcard.update');
+    Route::get('/shoppingcard/clear', [HomeController::class, 'clearCart'])->name('shoppingcard.clear');
+    //Tìm kiếm
+    Route::get('/search/products', [HomeController::class, 'searchProducts'])->name('search.products');
+    Route::get('/search/articles', [HomeController::class, 'searchArticles'])->name('search.articles');
+    // Tuyển dụng
+    Route::get('/recruitment', [HomeController::class, 'getRecruitment'])->name('recruitment');
+    // Liên hệ
+    Route::get('/contact', [HomeController::class, 'getContact'])->name('contact');
+});
+
+// Trang khách hàng
+Route::get('/user/register', [HomeController::class, 'getRegister'])->name('user.register');
+Route::get('/user/login', [HomeController::class, 'getLogin'])->name('user.login');
+
+// Trang tài khoản khách hàng
+//Route::prefix('user')->name('user.')->middleware('user')->group(function () {
+Route::prefix('user')->name('user.')->group(function () {
+    // Trang chủ của giao diện khách hàng
+    Route::get('/', [CustomersController::class, 'getHome'])->name('home');
+    Route::get('/home', [CustomersController::class, 'getHome'])->name('home');
+    // Đặt hàng
+    Route::get('/place-order', [CustomersController::class, 'getPlaceOrder'])->name('place-order');
+    Route::post('/place-order', [CustomersController::class, 'postPlaceOrder'])->name('place-order');
+    Route::get('/place-order-success', [CustomersController::class, 'getPlaceOrderSuccess'])->name('place-order-success');
+    // Xem và cập nhật trạng thái đơn hàng
+    Route::get('/order', [CustomersController::class, 'getOrder'])->name('order');
+    Route::get('/order/{id}', [CustomersController::class, 'getOrder'])->name('order.details');
+    Route::post('/order/{id}', [CustomersController::class, 'postOrder'])->name('order.details');
+    // Cập nhật thông tin tài khoản
+    Route::get('/profile', [CustomersController::class, 'getProfile'])->name('profile');
+    Route::post('/profile', [CustomersController::class, 'postProfile'])->name('profile'); // Đổi mật khẩu
+    Route::get('/change-password', [CustomersController::class, 'getChangePassword'])->name('change-password');
+    Route::post('/change-password', [CustomersController::class, 'postChangePassword'])->name('change-password');
+    // Đăng xuất
+    Route::post('/logout', [CustomersController::class, 'postLogout'])->name('logout');
+});
+
+// Trang tài khoản quản trị
+//Route::prefix('administrator')->name('administrator.')->middleware('administrator')->group(function () {
+Route::prefix('administrator')->name('administrator.')->group(function () {
+    // Trang chủ frontend
+    Route::get('/', [AdministratorController::class, 'index'])->name('home');
+    Route::get('/home', [AdministratorController::class, 'index'])->name('home');
+
+    // Quản lý Loại sản phẩm
+    Route::get('/categories', [CategoriesController::class, 'getList'])->name('categories');
+    Route::get('/categories/add', [CategoriesController::class, 'getAdd'])->name('categories.add');
+    Route::post('/categories/add', [CategoriesController::class, 'postAdd'])->name('categories.add');
+    Route::get('/categories/update/{id}', [CategoriesController::class, 'getUpdate'])->name('categories.update');
+    Route::post('/categories/update/{id}', [CategoriesController::class, 'postUpdate'])->name('categories.update');
+    Route::get('/categories/delete/{id}', [CategoriesController::class, 'getDelete'])->name('categories.delete');
+    Route::post('/categories/import', [CategoriesController::class, 'postImport'])->name('categories.import');
+    Route::get('/categories/export', [CategoriesController::class, 'getExport'])->name('categories.export');
+
+    // Quản lý Hãng sản xuất
+    Route::get('/manufacturers', [ManufacturesController::class, 'getList'])->name('manufacturers');
+    Route::get('/manufacturers/add', [ManufacturesController::class, 'getAdd'])->name('manufacturers.add');
+    Route::post('/manufacturers/add', [ManufacturesController::class, 'postAdd'])->name('manufacturers.add');
+    Route::get('/manufacturers/update/{id}', [ManufacturesController::class, 'getUpdate'])->name('manufacturers.update');
+    Route::post('/manufacturers/update/{id}', [ManufacturesController::class, 'postUpdate'])->name('manufacturers.update');
+    Route::get('/manufacturers/delete/{id}', [ManufacturesController::class, 'getDelete'])->name('manufacturers.delete');
+    Route::post('/manufacturers/import', [ManufacturesController::class, 'postImport'])->name('manufacturers.import');
+    Route::get('/manufacturers/export', [ManufacturesController::class, 'getExport'])->name('manufacturers.export');
+
+    // Quản lý Sản phẩm
+    Route::get('/products', [ProductsController::class, 'getList'])->name('products');
+    Route::get('/products/add', [ProductsController::class, 'getAdd'])->name('products.add');
+    Route::post('/products/add', [ProductsController::class, 'postAdd'])->name('products.add');
+    Route::get('/products/update/{id}', [ProductsController::class, 'getUpdate'])->name('products.update');
+    Route::post('/products/update/{id}', [ProductsController::class, 'postUpdate'])->name('products.update');
+    Route::get('/products/delete/{id}', [ProductsController::class, 'getDelete'])->name('products.delete');
+    Route::post('/products/import', [ProductsController::class, 'postImport'])->name('products.import');
+    Route::get('/products/export', [ProductsController::class, 'getExport'])->name('products.export');
+
+    // Quản lý Tình trạng Đơn hàng
+    Route::get('/order-statuses', [OrderStatusController::class, 'getList'])->name('order_statuses');
+    Route::get('/order-statuses/add', [OrderStatusController::class, 'getAdd'])->name('order_statuses.add');
+    Route::post('/order-statuses/add', [OrderStatusController::class, 'postAdd'])->name('order_statuses.add');
+    Route::get('/order-statuses/update/{id}', [OrderStatusController::class, 'getUpdate'])->name('order_statuses.update');
+    Route::post('/order-statuses/update/{id}', [OrderStatusController::class, 'postUpdate'])->name('order_statuses.update');
+    Route::get('/order-statuses/delete/{id}', [OrderStatusController::class, 'getDelete'])->name('order_statuses.delete');
+    Route::post('/order-statuses/import', [OrderStatusController::class, 'postImport'])->name('order_statuses.import');
+    Route::get('/order-statuses/export', [OrderStatusController::class, 'getExport'])->name('order_statuses.export');
+
+    // Quản lý Đơn hàng
+    Route::get('/orders', [OrdersController::class, 'getList'])->name('orders');
+    Route::get('/orders/add', [OrdersController::class, 'getAdd'])->name('orders.add');
+    Route::post('/orders/add', [OrdersController::class, 'postAdd'])->name('orders.add');
+    Route::get('/orders/update/{id}', [OrdersController::class, 'getUpdate'])->name('orders.update');
+    Route::post('/orders/update/{id}', [OrdersController::class, 'postUpdate'])->name('orders.update');
+    Route::get('/orders/delete/{id}', [OrdersController::class, 'getDelete'])->name('orders.delete');
+
+    //Quản lý Vai trò người dùng
+    Route::get('/roles', [RolesController::class, 'getList'])->name('roles');
+    Route::get('/roles/add', [RolesController::class, 'getAdd'])->name('roles.add');
+    Route::post('/roles/add', [RolesController::class, 'postAdd'])->name('roles.add');
+    Route::get('/roles/update/{id}', [RolesController::class, 'getUpdate'])->name('roles.update');
+    Route::post('/roles/update/{id}', [RolesController::class, 'postUpdate'])->name('roles.update');
+    Route::get('/roles/delete/{id}', [RolesController::class, 'getDelete'])->name('roles.delete');
+    Route::post('/roles/import', [RolesController::class, 'postImport'])->name('roles.import');
+    Route::get('/roles/export', [RolesController::class, 'getExport'])->name('roles.export');
+
+    // Quản lý Tài khoản người dùng
+    Route::get('/users', [UsersController::class, 'getList'])->name('users');
+    Route::get('/users/add', [UsersController::class, 'getAdd'])->name('users.add');
+    Route::post('/users/add', [UsersController::class, 'postAdd'])->name('users.add');
+    Route::get('/users/update/{id}', [UsersController::class, 'getUpdate'])->name('users.update');
+    Route::post('/users/update/{id}', [UsersController::class, 'postUpdate'])->name('users.update');
+    Route::get('/users/delete/{id}', [UsersController::class, 'getDelete'])->name('users.delete');
+
+    // Quản lý Thiết bị IoT
+    Route::get('/iot-devices', [IoTDevicesController::class, 'getList'])->name('iot_devices');
+    Route::get('/iot-devices/add', [IoTDevicesController::class, 'getAdd'])->name('iot_devices.add');
+    Route::post('/iot-devices/add', [IoTDevicesController::class, 'postAdd'])->name('iot_devices.add');
+    Route::get('/iot-devices/update/{id}', [IoTDevicesController::class, 'getUpdate'])->name('iot_devices.update');
+    Route::post('/iot-devices/update/{id}', [IoTDevicesController::class, 'postUpdate'])->name('iot_devices.update');
+    Route::get('/iot-devices/delete/{id}', [IoTDevicesController::class, 'getDelete'])->name('iot_devices.delete');
+
+    // Quản lý chỉ số thiết bị
+    Route::get('/device-metrics', [DeviceMetricController::class, 'getList'])->name('device_metrics');
+    Route::get('/device-metrics/add', [DeviceMetricController::class, 'getAdd'])->name('device_metrics.add');
+    Route::post('/device-metrics/add', [DeviceMetricController::class, 'postAdd'])->name('device_metrics.add');
+    Route::get('/device-metrics/update/{id}', [DeviceMetricController::class, 'getUpdate'])->name('device_metrics.update');
+    Route::post('/device-metrics/update/{id}', [DeviceMetricController::class, 'postUpdate'])->name('device_metrics.update');
+    Route::get('/device-metrics/delete/{id}', [DeviceMetricController::class, 'getDelete'])->name('device_metrics.delete');
+
+    // Quản lý ngưỡng cảnh báo
+    Route::get('/alert-thresholds', [AlertThresholdsController::class, 'getList'])->name('alert_thresholds');
+    Route::get('/alert-thresholds/add', [AlertThresholdsController::class, 'getAdd'])->name('alert_thresholds.add');
+    Route::post('/alert-thresholds/add', [AlertThresholdsController::class, 'postAdd'])->name('alert_thresholds.add');
+    Route::get('/alert-thresholds/update/{id}', [AlertThresholdsController::class, 'getUpdate'])->name('alert_thresholds.update');
+    Route::post('/alert-thresholds/update/{id}', [AlertThresholdsController::class, 'postUpdate'])->name('alert_thresholds.update');
+    Route::get('/alert-thresholds/delete/{id}', [AlertThresholdsController::class, 'getDelete'])->name('alert_thresholds.delete');
+});

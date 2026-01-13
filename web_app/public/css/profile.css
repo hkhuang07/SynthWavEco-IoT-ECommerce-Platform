@@ -1,0 +1,668 @@
+/* ==========================================================================
+   Profile Page Styles - GreenTech IoT Agriculture
+   Inspired by NewSmart Design with Green Color Scheme
+   ========================================================================== */
+
+/* Profile Page Container */
+.profile-page {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Cover Image Section - NewSmart Style */
+.profile-cover {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.profile-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-cover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(47, 79, 79, 0.95) 0%, rgba(47, 79, 79, 0) 100%);
+}
+
+/* Profile Header Card */
+.profile-header-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(47, 79, 79, 0.1);
+    margin: -80px 20px 20px;
+    position: relative;
+    overflow: visible;
+    z-index: 10;
+}
+
+/* Profile Info Section */
+.profile-info-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Avatar Container - NewSmart Style */
+.profile-avatar-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: -70px auto 15px;
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ffffff;
+    box-shadow: 0 8px 25px rgba(47, 79, 79, 0.2);
+    transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 35px rgba(47, 79, 79, 0.25);
+}
+
+/* Avatar Status Badge */
+.profile-status-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: #228b22;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-status-badge svg {
+    width: 12px;
+    height: 12px;
+    fill: #ffffff;
+}
+
+/* Profile Name & Title */
+.profile-name {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2f4f4f;
+    margin: 0 0 5px;
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 15px;
+    color: #6c757d;
+    text-align: center;
+    margin: 0 0 15px;
+}
+
+/* Profile Stats */
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+    margin-top: 10px;
+    border-top: 1px solid #e9ecef;
+}
+
+.profile-stat-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.profile-stat-item:hover {
+    background: rgba(34, 139, 34, 0.08);
+}
+
+.profile-stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #228b22;
+    line-height: 1.2;
+}
+
+.profile-stat-label {
+    font-size: 13px;
+    color: #6c757d;
+    margin-top: 3px;
+}
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 20px 20px;
+}
+
+/* Buttons - GreenTech Style */
+.btn-profile-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    gap: 8px;
+}
+
+.btn-profile-primary.green {
+    background: linear-gradient(135deg, #228b22 0%, #2f4f4f 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+}
+
+.btn-profile-primary.green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34, 139, 34, 0.4);
+}
+
+.btn-profile-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: 2px solid #2f4f4f;
+    background: transparent;
+    color: #2f4f4f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    gap: 8px;
+}
+
+.btn-profile-secondary:hover {
+    background: #2f4f4f;
+    color: #ffffff;
+}
+
+/* Profile Content Area */
+.profile-content {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Section Cards */
+.profile-section-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(47, 79, 79, 0.08);
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.profile-section-card:hover {
+    box-shadow: 0 8px 30px rgba(47, 79, 79, 0.12);
+}
+
+.profile-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2f4f4f;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-section-title svg {
+    width: 22px;
+    height: 22px;
+    fill: #228b22;
+}
+
+/* Form Styles */
+.profile-form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.profile-form-control {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    background: #f8f9fa;
+    color: #2f4f4f;
+    transition: all 0.3s ease;
+}
+
+.profile-form-control:focus {
+    outline: none;
+    border-color: #228b22;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(34, 139, 34, 0.1);
+}
+
+.profile-form-control::placeholder {
+    color: #adb5bd;
+}
+
+/* Profile Menu */
+.profile-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+}
+
+.profile-menu-item:hover {
+    background: rgba(34, 139, 34, 0.1);
+    transform: translateX(5px);
+}
+
+.profile-menu-item.active {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.15) 0%, rgba(47, 79, 79, 0.1) 100%);
+    border-left: 4px solid #228b22;
+}
+
+.profile-menu-item svg {
+    width: 20px;
+    height: 20px;
+    fill: #6c757d;
+    margin-right: 15px;
+    transition: fill 0.3s ease;
+}
+
+.profile-menu-item:hover svg,
+.profile-menu-item.active svg {
+    fill: #228b22;
+}
+
+.profile-menu-item span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.profile-menu-item:hover span,
+.profile-menu-item.active span {
+    color: #2f4f4f;
+}
+
+/* Order Cards */
+.order-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #228b22;
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(47, 79, 79, 0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.order-id {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2f4f4f;
+}
+
+.order-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.order-status.completed {
+    background: rgba(34, 139, 34, 0.15);
+    color: #228b22;
+}
+
+.order-status.pending {
+    background: rgba(255, 193, 7, 0.15);
+    color: #d39e00;
+}
+
+.order-status.cancelled {
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+}
+
+.order-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.order-total {
+    font-weight: 700;
+    color: #228b22;
+    font-size: 16px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(47, 79, 79, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2f4f4f;
+    margin: 0 0 8px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #228b22;
+}
+
+/* Tab Navigation */
+.profile-tabs {
+    display: flex;
+    gap: 5px;
+    background: #f8f9fa;
+    padding: 6px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+}
+
+.profile-tab {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.profile-tab:hover {
+    color: #2f4f4f;
+}
+
+.profile-tab.active {
+    background: #ffffff;
+    color: #228b22;
+    box-shadow: 0 2px 10px rgba(47, 79, 79, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-cover {
+        height: 200px;
+    }
+
+    .profile-header-card {
+        margin: -60px 15px 15px;
+    }
+
+    .profile-avatar-container {
+        width: 110px;
+        height: 110px;
+        margin: -55px auto 12px;
+    }
+
+    .profile-avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .profile-name {
+        font-size: 24px;
+    }
+
+    .profile-stats {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .profile-stat-number {
+        font-size: 20px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .btn-profile-primary,
+    .btn-profile-secondary {
+        width: 100%;
+    }
+
+    .profile-section-card {
+        padding: 20px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-cover {
+        height: 160px;
+    }
+
+    .profile-info-section {
+        padding: 15px;
+    }
+
+    .profile-avatar-container {
+        width: 90px;
+        height: 90px;
+        margin: -45px auto 10px;
+    }
+
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-name {
+        font-size: 20px;
+    }
+
+    .profile-stats {
+        gap: 10px;
+    }
+
+    .profile-stat-item {
+        padding: 8px 10px;
+    }
+
+    .profile-stat-number {
+        font-size: 18px;
+    }
+
+    .profile-stat-label {
+        font-size: 12px;
+    }
+
+    .profile-menu-item {
+        padding: 12px 15px;
+    }
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.profile-pulse:hover {
+    animation: pulse 0.6s ease;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+/* Empty State */
+.profile-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.profile-empty-state svg {
+    width: 80px;
+    height: 80px;
+    fill: #dee2e6;
+    margin-bottom: 15px;
+}
+
+.profile-empty-state p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Notification Badge */
+.notification-badge {
+    position: relative;
+}
+
+.notification-badge::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #dc3545;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}

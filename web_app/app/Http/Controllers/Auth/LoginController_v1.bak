@@ -1,0 +1,110 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected function redirectTo()
+    {
+        $roleName = Role::find(Auth::user()->role)?->name;
+
+        return match (strtolower($roleName ?? '')) {
+            'administrator' => route('administrator.home'),
+            'users' => route('user.home'),
+            'saler' => route('saler.home'),
+            'shipper' => route('shipper.home'),
+            'manager' => route('manager.home'),
+            default => route('frontend.home'),
+        };
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Xác định field nào sẽ được sử dụng để đăng nhập
+     * và thực hiện merge field phù hợp
+     *
+     * @return string
+     */
+    public function username()
+    {
+        $login = request()->input('login');
+        $fieldType = $this->findLoginField($login);
+        
+        // Merge field phù hợp vào request
+        request()->merge([$fieldType => $login]);
+        
+        return $fieldType;
+    }
+
+    /**
+     * Xác định loại field dựa trên định dạng đăng nhập
+     *
+     * @param string $login
+     * @return string
+     */
+    protected function findLoginField(string $login): string
+    {
+        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+            return 'email';
+        }
+        if (preg_match('/^[0-9]{9,15}$/', $login)) {
+            return 'phone';
+        }
+        if (preg_match('/^[0-9]{12}$/', $login)) {
+            return 'id_card';
+        }
+        return 'username';
+    }
+
+    /**
+     * Chuẩn bị credentials cho việc xác thực
+     * Chỉ thêm điều kiện is_active một lần duy nhất
+     *
+     * @param Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        $fieldName = $this->username();
+        $credentials = $request->only($fieldName, 'password');
+        
+        // Thêm điều kiện is_active
+        $credentials['is_active'] = 1;
+        
+        return $credentials;
+    }
+}

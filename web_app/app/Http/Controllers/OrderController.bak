@@ -1,0 +1,172 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Order;
+use App\Models\OrderStatus;
+use App\Models\OrderItem;
+use App\Models\User;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class OrderController extends Controller
+{
+    public function getList()
+    {
+        $orders = Order::with(['user', 'status', 'items.product'])
+            ->withCount('items')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $statuses = OrderStatus::all();
+        $users = User::all();
+        $products = Product::all();
+        return view('orders.list', compact('orders', 'statuses', 'users', 'products'));
+    }
+
+    public function getAdd()
+    {
+        $statuses = OrderStatus::all();
+        $users = User::all();
+        $products = Product::all();
+        return view('orders.add', compact('statuses', 'users', 'products'));
+    }
+
+    public function postAdd(Request $request)
+    {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'order_status_id' => ['required', 'exists:order_statuses,id'],
+            'shipping_address' => ['required', 'string'],
+            'contact_phone' => ['required', 'string', 'max:20'],
+            'payment_method' => ['required', 'string', 'max:50'],
+            'items' => ['required', 'array', 'min:1'],
+            'items.*.product_id' => ['required', 'exists:products,id'],
+            'items.*.quantity' => ['required', 'integer', 'min:1'],
+            'items.*.price_at_order' => ['required', 'numeric', 'min:0'],
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $subtotal = 0;
+            // Calculate subtotal
+            foreach ($request->items as $item) {
+                $subtotal += $item['quantity'] * $item['price_at_order'];
+            }
+            $taxAmount = $request->tax_amount ?? 0; 
+            $shippingFee = $request->shipping_fee ?? 0;
+            $totalAmount = $subtotal + $taxAmount + $shippingFee;
+
+            $order = Order::create([
+                'user_id' => $request->user_id,
+                'order_status_id' => $request->order_status_id,
+                'shipping_address' => $request->shipping_address,
+                'contact_phone' => $request->contact_phone,
+                'subtotal' => $subtotal,
+                'tax_amount' => $taxAmount,
+                'shipping_fee' => $shippingFee,
+                'total_amount' => $totalAmount,
+                'payment_method' => $request->payment_method,
+                'notes' => $request->notes,
+            ]);
+
+            foreach ($request->items as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price_at_order' => $item['price_at_order'],
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('orders')->with('success', 'Order created successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to create order: ' . $e->getMessage())->withInput();
+        }
+    }
+
+    public function getUpdate($id)
+    {
+        $order = Order::with(['user', 'status', 'items.product'])->findOrFail($id);
+        $statuses = OrderStatus::all();
+        $users = User::all();
+        $products = Product::all();
+        return view('orders.update', compact('order', 'statuses', 'users', 'products'));
+    }
+
+    public function postUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'order_status_id' => ['required', 'exists:order_statuses,id'],
+            'contact_phone' => ['required', 'string', 'max:20'],
+            'shipping_address' => ['required', 'string'],
+            'payment_method' => ['required', 'string', 'max:50'],
+            'notes' => ['nullable', 'string'],
+            'items' => ['required', 'array', 'min:1'],
+            'items.*.product_id' => ['required', 'exists:products,id'],
+            'items.*.quantity' => ['required', 'integer', 'min:1'],
+            'items.*.price_at_order' => ['required', 'numeric', 'min:0'],
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $order = Order::findOrFail($id);
+            
+            $subtotal = 0;
+            foreach ($request->items as $item) {
+                $subtotal += $item['quantity'] * $item['price_at_order'];
+            }
+            
+            $taxAmount = $request->tax_amount ?? $order->tax_amount;
+            $shippingFee = $request->shipping_fee ?? $order->shipping_fee;
+            $totalAmount = $subtotal + $taxAmount + $shippingFee;
+
+            $order->update([
+                'order_status_id' => $request->order_status_id,
+                'shipping_address' => $request->shipping_address,
+                'contact_phone' => $request->contact_phone,
+                'subtotal' => $subtotal,
+                'tax_amount' => $taxAmount,
+                'shipping_fee' => $shippingFee,
+                'total_amount' => $totalAmount,
+                'payment_method' => $request->payment_method,
+                'notes' => $request->notes,
+            ]);
+
+            // Delete old items and create new ones
+            OrderItem::where('order_id', $id)->delete();
+            foreach ($request->items as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'price_at_order' => $item['price_at_order'],
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('orders')->with('success', 'Order updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to update order: ' . $e->getMessage())->withInput();
+        }
+    }
+
+    public function getDelete($id)
+    {
+        DB::beginTransaction();
+        try {
+            OrderItem::where('order_id', $id)->delete();
+            $order = Order::findOrFail($id);
+            $order->delete();
+            
+            DB::commit();
+            return redirect()->route('orders')->with('success', 'Order deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('orders')->with('error', 'Failed to delete order: ' . $e->getMessage());
+        }
+    }
+}
