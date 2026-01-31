@@ -59,7 +59,6 @@ class HomeController extends Controller
 
     public function getHome()
     {
-        //$manufactures = Manufacturer::orderBy('name')->get();
         $categories = Category::with([
             'products' => function ($query) {
                 $query->latest()
@@ -76,12 +75,36 @@ class HomeController extends Controller
             }
         ])->get();
 
+        $topics = Topic::with([
+            'Article' => function ($query) {
+                $query->latest()
+                    ->take(8);  
+            }
+        ])->get();
+
+        $article_types = ArticleType::with([
+            'articles' => function ($query) {
+                $query->latest()
+                    ->take(8);
+            }
+        ])->get();
+
         $manufacturesProducts = Product::with(['images', 'manufacturer'])
             ->inRandomOrder()
             ->limit(10)
             ->get();
 
         $featuredProducts = Product::with(['images', 'category'])
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        $typesArticles = Article::with(['ArticleStatus', 'ArticleType','Comments'])
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        $featuredArticles = Article::with(['ArticleStatus', 'Topic','Comments'])
             ->inRandomOrder()
             ->limit(10)
             ->get();
@@ -97,6 +120,7 @@ class HomeController extends Controller
                 'images' => array_slice($allImages, 0, 10)
             ];
         }
+        
         foreach ($manufacturesProducts as $product) {
             $allImages = $product->images->pluck('url')->all();
             $sliderImages[$product->slug] = [
@@ -108,8 +132,28 @@ class HomeController extends Controller
             ];
         }
 
+        foreach ($featuredArticles as $article) {
+            $sliderImages[$article->slug] = [
+                'title' => $article->title,
+                'slug' => $article->slug,
+                'topic_slug' => $article->topic->slug,
+                'view' => $article->view,
+                'images' => $article->image
+            ];
+        }
+        
+        foreach ($typesArticles as $article) {
+            $sliderImages[$article->slug] = [
+                'title' => $article->title,
+                'slug' => $article->slug,
+                'type_slug' => $article->ArticleType->slug,
+                'view' => $article->view,
+                'images' => $article->image
+            ];
+        }
 
-        return view('frontend.home', compact('manufactures', 'categories', 'featuredProducts', 'manufacturesProducts', 'sliderImages'));
+
+        return view('frontend.home', compact('manufactures', 'categories', 'featuredProducts', 'manufacturesProducts', 'sliderImages', 'topics', 'article_types', 'featuredArticles', 'typesArticles'));
     }
 
     public function searchProducts(Request $request)
@@ -398,6 +442,62 @@ class HomeController extends Controller
             'article_types',
             'topic'
         ));
+    }
+
+
+    public function getProducts()
+    {
+        //$manufactures = Manufacturer::orderBy('name')->get();
+        $categories = Category::with([
+            'products' => function ($query) {
+                $query->latest()
+                    ->with('avatar')
+                    ->take(8);
+            }
+        ])->get();
+
+        $manufactures = Manufacturer::with([
+            'products' => function ($query) {
+                $query->latest()
+                    ->with('avatar')
+                    ->take(8);
+            }
+        ])->get();
+
+        $manufacturesProducts = Product::with(['images', 'manufacturer'])
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        $featuredProducts = Product::with(['images', 'category'])
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+
+        $sliderImages = [];
+        foreach ($featuredProducts as $product) {
+            $allImages = $product->images->pluck('url')->all();
+            $sliderImages[$product->slug] = [
+                'name' => $product->name,
+                'slug' => $product->slug,
+                'category_slug' => $product->category->slug,
+                'price' => $product->price,
+                'images' => array_slice($allImages, 0, 10)
+            ];
+        }
+        foreach ($manufacturesProducts as $product) {
+            $allImages = $product->images->pluck('url')->all();
+            $sliderImages[$product->slug] = [
+                'name' => $product->name,
+                'slug' => $product->slug,
+                'manufacturer_slug' => $product->manufacturer->slug,
+                'price' => $product->price,
+                'images' => array_slice($allImages, 0, 10)
+            ];
+        }
+
+
+        return view('frontend.products', compact('manufactures', 'categories', 'featuredProducts', 'manufacturesProducts', 'sliderImages'));
     }
 
     /*public function getArticle_Details($topicname_slug = '', $title_slug = '')

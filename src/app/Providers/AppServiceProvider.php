@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
 	{
-		//Paginator::useBootstrapFive();
+		Paginator::useBootstrapFive();
 		//Facades\View::composer('layouts.frontend',CategoriesComposer::class);
 		//Facades\View::composer('layouts.frontend',ChuDeComposer::class);
 

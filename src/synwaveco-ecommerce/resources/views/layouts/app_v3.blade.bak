@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
+	
+	<title>Trang quản trị - {{ config('app.name', 'GreenTech') }}</title>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="{{ asset('public/vendor/font-awesome/css/all.min.css') }}" />
+	@yield('styles')
+</head>
+<body>
+	<div class="container-fluid">
+		<nav class="navbar navbar-expand-md navbar-light shadow-sm bg-success">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="{{ route('administrator.home') }}">
+					<i class="fas fa-microchip"></i> {{ config('app.name', 'GreenTech') }}
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<!-- Left side of Navbar -->
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('administrator.home') }}">
+								<i class="fas fa-home"></i> Trang chủ
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-users-cog"></i> User & Permissions
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.users') }}">
+										<i class="fas fa-users"></i> User Management
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.roles') }}">
+										<i class="fas fa-user-shield"></i> Roles Management
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-sitemap"></i> Categories and Manufacturers
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.categories') }}">
+										<i class="fas fa-list"></i> Categories
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.manufacturers') }}">
+										<i class="fas fa-copyright"></i> Manufacturers
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-box"></i> Products
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.products') }}">
+										<i class="fas fa-cube"></i> All Products
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-file-invoice"></i> Orders
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.orders') }}">
+										<i class="fas fa-shopping-cart"></i> All Orders
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.order_statuses') }}">
+										<i class="fas fa-list-check"></i> Order Status
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-microchip"></i> IoT Devices
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="{{ route('administrator.iot_devices') }}">
+										<i class="fas fa-network-wired"></i> Device List
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					
+					<!-- Right side of Navbar -->
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<button class="nav-link btn" onclick="toggleTheme()">
+								<i class="fas fa-adjust"></i> <span id="themeText">Dark Mode</span>
+							</button>
+						</li>
+						<li class="nav-item">
+							<button class="nav-link btn" onclick="toggleLanguage()">
+								<i class="fas fa-language"></i> <span id="langText">Vietnamese</span>
+							</button>
+						</li>
+						@guest
+							@if (Route::has('login'))
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('login') }}">
+										<i class="fas fa-sign-in-alt"></i> Đăng nhập
+									</a>
+								</li>
+							@endif
+							@if (Route::has('register'))
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('register') }}">
+										<i class="fas fa-user-plus"></i> Đăng ký
+									</a>
+								</li>
+							@endif
+						@else
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#nguoidung" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+									<i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#">
+										<i class="fas fa-user"></i> Profile
+									</a>
+									<a class="dropdown-item" href="#">
+										<i class="fas fa-cog"></i> Settings
+									</a>
+									<hr class="dropdown-divider">
+									<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+										<i class="fas fa-sign-out-alt"></i> Đăng xuất
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
+										@csrf
+									</form>
+								</div>
+							</li>
+						@endguest
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<main class="pt-3">
+			@yield('content')
+		</main>
+		
+		<hr class="shadow-sm" />
+		<footer class="text-center py-3">
+			<p class="mb-2">&copy; {{ date('Y') }} {{ config('app.name', 'GreenTech') }} by Huynh Quoc Huy. All rights reserved.</p>
+			<p class="mb-0 text-muted">{{ config('app.name', 'GreenTech') }} Technology Company Limited</p>
+		</footer>
+	</div>
+	
+	<!-- Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script>
+		// Theme toggle functionality
+		let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+		function toggleTheme() {
+			isDarkMode = !isDarkMode;
+			localStorage.setItem('darkMode', isDarkMode);
+			updateTheme();
+		}
+
+		function updateTheme() {
+			const themeText = document.getElementById('themeText');
+
+			if (isDarkMode) {
+				document.body.classList.add('dark-mode');
+				if (themeText) themeText.textContent = 'Light Mode';
+			} else {
+				document.body.classList.remove('dark-mode');
+				if (themeText) themeText.textContent = 'Dark Mode';
+			}
+		}
+
+		// Language toggle functionality
+		let isVietnamese = localStorage.getItem('language') === 'vi';
+
+		function toggleLanguage() {
+			isVietnamese = !isVietnamese;
+			localStorage.setItem('language', isVietnamese ? 'vi' : 'en');
+			updateLanguage();
+		}
+
+		function updateLanguage() {
+			const langText = document.getElementById('langText');
+
+			if (isVietnamese) {
+				if (langText) langText.textContent = 'English';
+			} else {
+				if (langText) langText.textContent = 'Vietnamese';
+			}
+		}
+
+		// Initialize on page load
+		document.addEventListener('DOMContentLoaded', function() {
+			updateTheme();
+			updateLanguage();
+		});
+	</script>
+	
+	@yield('scripts')
+</body>
+
+</html>

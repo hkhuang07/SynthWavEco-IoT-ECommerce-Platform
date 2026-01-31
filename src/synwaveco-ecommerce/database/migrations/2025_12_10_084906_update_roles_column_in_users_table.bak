@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            // 1. Xóa cột 'roles' kiểu string cũ (nếu nó tồn tại)
+            $table->dropColumn('roles');
+
+            // 2. THÊM cột 'roles' kiểu foreignId
+            // Lưu ý: foreignId sẽ tạo cột 'role_id' nếu không chỉ định tên,
+            // nhưng ở đây bạn đặt tên là 'roles' nên sẽ tạo cột 'roles'.
+            $table->foreignId('roles')
+                  ->nullable() // Nên cho phép NULL tạm thời nếu bạn chưa thiết lập vai trò
+                  ->after('is_active') // Đặt vị trí cột mới sau 'is_active'
+                  ->constrained('roles')
+                  ->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            // 1. Xóa khóa ngoại (tên khóa ngoại mặc định là 'users_roles_foreign')
+            $table->dropConstrainedForeignId('roles'); 
+
+            // 2. Thêm lại cột 'roles' kiểu string cũ
+            $table->string('roles', 255)->default(2)->after('is_active');
+        });
+    }
+};

@@ -1,0 +1,560 @@
+/* ================================================
+   HERO SHOWCASE - LIVESHOW CAROUSEL ENHANCEMENTS
+   ================================================ */
+
+/* Swiper Custom Styling */
+.hero-products-swiper,
+.hero-articles-swiper {
+    position: relative;
+}
+
+/* Swiper Pagination - Custom Dots */
+.hero-pagination {
+    position: absolute !important;
+    bottom: 1.5rem !important;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10;
+}
+
+.hero-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    margin: 0;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.hero-products-section .hero-pagination .swiper-pagination-bullet {
+    background: rgba(0, 139, 69, 0.4);
+}
+
+.hero-products-section .hero-pagination .swiper-pagination-bullet-active {
+    background: #00CD66;
+    width: 24px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 205, 102, 0.4);
+}
+
+.hero-articles-section .hero-pagination .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-articles-section .hero-pagination .swiper-pagination-bullet-active {
+    background: #00FF7F;
+    width: 24px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.4);
+}
+
+/* Navigation Arrows for Manual Control */
+.hero-products-section::before,
+.hero-products-section::after,
+.hero-articles-section::before,
+.hero-articles-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 139, 69, 0.1);
+    border: 2px solid rgba(0, 139, 69, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.hero-products-section:hover::before,
+.hero-products-section:hover::after {
+    background: rgba(0, 139, 69, 0.2);
+    border-color: rgba(0, 139, 69, 0.5);
+}
+
+.hero-articles-section:hover::before,
+.hero-articles-section:hover::after {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Auto-play Indicator */
+.hero-product-item::after,
+.hero-article-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00CD66 0%, transparent 100%);
+    animation: slideProgress 5s linear infinite;
+    z-index: 10;
+}
+
+.hero-article-item::after {
+    background: linear-gradient(90deg, #00FF7F 0%, transparent 100%);
+}
+
+@keyframes slideProgress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Fade In Animation for Content */
+.swiper-slide {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Enhanced Product Info Animation */
+.hero-product-info {
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hero-product-image {
+    animation: scaleIn 0.6s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Article Info Animation */
+.hero-article-info {
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Button Interaction */
+.hero-product-info .btn,
+.hero-article-info .btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-product-info .btn::before,
+.hero-article-info .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.hero-product-info .btn:hover::before,
+.hero-article-info .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Counter Badge Animation */
+.views-badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 127, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(0, 255, 127, 0);
+    }
+}
+
+/* Hover Effects for Navigation */
+.nav-tabs-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00CD66 0%, #3CB371 100%);
+    transition: width 0.3s ease;
+}
+
+.nav-tabs-custom .nav-link:hover::after,
+.nav-tabs-custom .nav-link.active::after {
+    width: 100%;
+}
+
+/* Topic Card Advanced Hover */
+.topic-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 127, 0.2), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.topic-card:hover::before {
+    left: 100%;
+}
+
+.topic-icon {
+    transition: all 0.3s ease;
+}
+
+.topic-card:hover .topic-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 205, 102, 0.3));
+}
+
+/* Category Carousel Auto-scroll */
+.categories-swiper {
+    animation: autoScroll 15s linear infinite;
+}
+
+@keyframes autoScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.category-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 205, 102, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-card:hover::after {
+    opacity: 1;
+}
+
+/* Manufacturer Grid Staggered Animation */
+.manufacturer-item {
+    animation: staggerFadeIn 0.5s ease-out backwards;
+}
+
+@for $i from 1 through 12 {
+    .manufacturer-item:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.05}s;
+    }
+}
+
+@keyframes staggerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Feature Card Gradient Shift */
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 127, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.feature-card:hover::before {
+    animation: shimmer 0.6s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Partnership Card Enhanced Hover */
+.partnership-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00CD66 0%, #3CB371 50%, #00CD66 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.partnership-card:hover::before {
+    opacity: 1;
+}
+
+.shipper-card::before {
+    background: linear-gradient(90deg, #1E90FF 0%, #4682B4 50%, #1E90FF 100%);
+}
+
+.partnership-benefits li {
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.partnership-benefits li::before {
+    content: '';
+    position: absolute;
+    left: -0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: #00CD66;
+    transition: width 0.3s ease;
+}
+
+.partnership-card:hover .partnership-benefits li::before {
+    width: 8px;
+}
+
+/* Newsletter Pulsing Effect */
+.newsletter-section {
+    position: relative;
+    animation: newsletterGlow 3s ease-in-out infinite;
+}
+
+@keyframes newsletterGlow {
+    0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 139, 69, 0.3);
+    }
+    50% {
+        box-shadow: 0 15px 50px rgba(0, 139, 69, 0.5);
+    }
+}
+
+.newsletter-form .form-control::placeholder {
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile Optimized */
+@media (max-width: 768px) {
+    .hero-pagination {
+        bottom: 1rem !important;
+    }
+
+    .hero-pagination .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+
+    .hero-pagination .swiper-pagination-bullet-active {
+        width: 20px;
+    }
+
+    @keyframes slideProgress {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+
+    .nav-tabs-custom {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .topics-grid {
+        grid-auto-flow: column;
+        overflow-x: auto;
+        gap: 1rem;
+    }
+
+    .topic-card {
+        flex-shrink: 0;
+        width: 100px;
+    }
+}
+
+/* ================================================
+   ADVANCED LIVESHOW FEATURES
+   ================================================ */
+
+/* Slide Transition Indicators */
+.swiper-slide-active .hero-product-info,
+.swiper-slide-active .hero-article-info {
+    animation: slideInRight 0.6s ease-out;
+}
+
+.swiper-slide-active .hero-product-image {
+    animation: scaleIn 0.6s ease-out;
+}
+
+/* Keyboard Navigation Hints (Optional) */
+.hero-showcase::after {
+    content: '← → to navigate';
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    color: rgba(0, 139, 69, 0.3);
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .hero-showcase:hover::after {
+        display: block;
+        animation: fadeInOut 2s ease-in-out infinite;
+    }
+}
+
+/* Loading Skeleton Animation (if needed) */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-skeleton 1.5s infinite;
+}
+
+@keyframes loading-skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Enhanced Accessibility */
+.hero-products-section,
+.hero-articles-section,
+.topic-card,
+.category-card,
+.manufacturer-item,
+.feature-card,
+.partnership-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus Visible for Keyboard Navigation */
+.hero-product-info .btn:focus-visible,
+.hero-article-info .btn:focus-visible,
+.topic-card:focus-visible,
+.category-card:focus-visible,
+.manufacturer-item:focus-visible {
+    outline: 2px solid #00CD66;
+    outline-offset: 2px;
+}
+
+/* Color Transition for Dark Mode (Optional) */
+@media (prefers-color-scheme: dark) {
+    .topic-card,
+    .category-card,
+    .feature-card,
+    .partnership-card {
+        background: #1f1f1f;
+        border-color: #333;
+    }
+
+    .section-title {
+        color: #00FF7F;
+    }
+
+    .hero-showcase {
+        background: linear-gradient(135deg, #1f1f1f 0%, #2a3f2a 100%);
+    }
+}

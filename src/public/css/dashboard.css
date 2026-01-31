@@ -1,0 +1,180 @@
+/* =========================================================
+   SYNWAVECO ADMIN DASHBOARD CORE STYLES
+   ========================================================= */
+
+:root {
+    --dashboard-bg: #f0fff0;
+    --card-shadow: 0 10px 30px rgba(0, 139, 69, 0.1);
+}
+
+.dashboard-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Welcome Banner */
+.welcome-section {
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 2px solid var(--green-spring);
+    box-shadow: 0 15px 35px rgba(0, 139, 69, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Statistics Cards */
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    height: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-light);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: white;
+}
+
+/* Management Module Cards */
+.module-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.5rem;
+    border: 2px solid #f1f3f5;
+    box-shadow: var(--card-shadow);
+    height: 100%;
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-super-dark);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =========================================================
+   BUTTON STYLES (Cập nhật theo yêu cầu GreenTech)
+   ========================================================= */
+
+.btn-action-gt {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Primary Green Gradient */
+.btn-gt-primary {
+    background: linear-gradient(135deg, #006400 0%, #228b22 100%);
+    border: 2px solid #00ff7f;
+    color: #ffffff;
+}
+
+.btn-gt-primary:hover {
+    background: linear-gradient(135deg, #228b22 0%, #32cd32 100%);
+    box-shadow: 0 6px 20px rgba(0, 255, 127, 0.4);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-gt-secondary {
+    background: linear-gradient(135deg, #080064 0%, #3b228b 100%);
+    border: 2px solid #2600ff;
+    color: #ffffff;
+}
+
+.btn-gt-secondary:hover {
+    background: linear-gradient(135deg, #22228b 0%, #3232cd 100%);
+    box-shadow: 0 6px 20px rgba(0, 13, 255, 0.4);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Blue Import Gradient */
+.btn-gt-import {
+    background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+    border: 2px solid #64b5f6;
+    color: white;
+}
+
+/* Purple Export Gradient */
+.btn-gt-export {
+    background: linear-gradient(135deg, #7b1fa2 0%, #ce93d8 100%);
+    border: 2px solid #e1bee7;
+    color: white;
+}
+
+.btn-gt-outline {
+    border: 2px solid var(--primary-light);
+    color: #0e4d2d;
+    background: transparent;
+}
+
+.btn-gt-outline:hover {
+    background: var(--primary-light);
+    color: rgb(218, 226, 226);
+}
+
+.btn-gt-offline {
+    border: 2px solid var(--primary-light);
+    color: #aadac2
+    background: transparent;
+}
+
+.btn-gt-offline:hover {
+    background: var(--primary-light);
+    color: rgb(179, 202, 187);
+}
+
+/* Activity Items */
+.activity-card {
+    background: white;
+    border-radius: 15px;
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.activity-item {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f3f5;
+    transition: background 0.2s;
+}
+
+.activity-item:hover { background: var(--bg-primary); }
+
+/* Dark Mode Overrides */
+.dark-mode .stat-card, 
+.dark-mode .module-card, 
+.dark-mode .activity-card {
+    background: #1a2e1a !important;
+    border-color: var(--primary-dark);
+    color: white;
+}
