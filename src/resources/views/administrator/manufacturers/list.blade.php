@@ -52,7 +52,7 @@
             <div class="item-card" data-manufacturer-id="{{ $manufacturer->id }}">
                 <div class="item-image-container">
                     @if(isset($manufacturer->logo) && $manufacturer->logo && file_exists(storage_path('app/private/' . $manufacturer->logo)))
-                    <img src="{{ asset('storage/app/private/'. $manufacturer->logo) }}"
+                    <img src="{{ asset('storage/'. $manufacturer->logo) }}"
                         alt="{{ $manufacturer->name }}"
                         class="item-image"
                         loading="lazy">

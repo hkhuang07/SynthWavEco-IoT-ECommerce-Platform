@@ -54,7 +54,7 @@
             <div class="item-card" data-product-id="{{ $product->id }}">
                 <div class="item-image-container">
                     @if($avatarImage && $avatarImage->url)
-                        <img src="{{ asset('storage/app/private/'. $avatarImage->url) }}"
+                        <img src="{{ asset('storage/'. $avatarImage->url) }}"
                              alt="{{ $product->name }}" class="item-image" loading="lazy">
                     @else
                         <div class="item-image-placeholder"><i class="fas fa-microchip"></i></div>

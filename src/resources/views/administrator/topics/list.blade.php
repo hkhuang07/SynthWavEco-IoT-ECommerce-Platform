@@ -51,7 +51,7 @@
             <div class="item-card" data-topic-id="{{ $topic->id }}">
                 <div class="item-image-container">
                     @if($topic->image && Storage::exists($topic->image))
-                    <img src="{{ asset('storage/app/private/'. $topic->image) }}"
+                    <img src="{{ asset('storage/'. $topic->image) }}"
                         alt="{{ $topic->name }}"
                         class="item-image"
                         loading="lazy">

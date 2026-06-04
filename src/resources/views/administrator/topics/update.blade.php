@@ -152,7 +152,7 @@
 
         if (topicData.image) {
             // Lưu ý: Đường dẫn asset cần khớp với cấu trúc lưu trữ của bạn
-            currentImage.src = "{{ asset('storage/app/private') }}/" + topicData.image;
+            currentImage.src = "{{ asset('storage') }}/" + topicData.image;
             currentImagePreview.style.display = 'block';
         } else {
             currentImagePreview.style.display = 'none';

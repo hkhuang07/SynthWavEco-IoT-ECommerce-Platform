@@ -21,7 +21,7 @@
         <div class="col-lg-6 mb-4 mb-lg-0">
             <div class="card p-3 shadow-sm border-0">
                 @if($article->image)
-                    <img src="{{ asset('storage/app/private/'.$article->image) }}" 
+                    <img src="{{ asset('storage/'.$article->image) }}" 
                          alt="{{ $article->title }}" 
                          class="img-fluid rounded shadow-sm" 
                          style="max-height: 500px; width: 100%; object-fit: cover;">
@@ -97,7 +97,7 @@
             <div class="col-md-3">
                 <div class="card h-100 border-0 shadow-sm hover-top">
                     <a href="{{ route('frontend.articles.article_topic_details', ['topicname_slug' => $related->Topic->slug, 'title_slug' => $related->slug]) }}">
-                        <img src="{{ asset('storage/app/private/'. ($related->image ?? 'default.png')) }}" 
+                        <img src="{{ asset('storage/'. ($related->image ?? 'default.png')) }}" 
                              class="card-img-top" alt="{{ $related->title }}" style="height: 160px; object-fit: cover;">
                     </a>
                     <div class="card-body">

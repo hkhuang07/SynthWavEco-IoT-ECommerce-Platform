@@ -58,7 +58,7 @@
         const img = document.getElementById('deleteArticleImage');
         const noImg = document.getElementById('deleteArticleNoImage');
         if (articleData.image) {
-            img.src = "{{ asset('storage/app/private') }}/" + articleData.image;
+            img.src = "{{ asset('storage') }}/" + articleData.image;
             img.style.display = 'block';
             noImg.style.display = 'none';
         } else {

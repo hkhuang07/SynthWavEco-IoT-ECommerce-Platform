@@ -23,7 +23,7 @@
         <div class="col-lg-6 mb-4 mb-lg-0">
             <div class="card p-3 shadow-sm border-0">
                 @if($avatar)
-                    <img src="{{ asset('storage/app/private/'.$avatar->url) }}" 
+                    <img src="{{ asset('storage/'.$avatar->url) }}" 
                          alt="{{ $product->name }}" 
                          class="img-fluid rounded" 
                          style="max-height: 500px; object-fit: contain;">
@@ -34,7 +34,7 @@
                 <div class="row mt-3 g-2">
                     @foreach($product->images->where('is_avatar', false)->take(3) as $image)
                         <div class="col-4">
-                            <img src="{{ asset('storage/app/private/'.$image->url) }}" class="img-thumbnail" alt="Gallery">
+                            <img src="{{ asset('storage/'.$image->url) }}" class="img-thumbnail" alt="Gallery">
                         </div>
                     @endforeach
                 </div>
@@ -85,7 +85,7 @@
                 <div class="card h-100 border-0 shadow-sm hover-top transition">
                     <a href="{{ route('frontend.products.product_category_details', ['categoryname_slug' => $related->category->slug, 'productname_slug' => $related->slug]) }}">
                         @php $relAvatar = $related->avatar ?? $related->images->where('is_avatar', true)->first(); @endphp
-                        <img src="{{ asset('storage/app/private/'. ($relAvatar->url ?? 'default.png')) }}" 
+                        <img src="{{ asset('storage/'. ($relAvatar->url ?? 'default.png')) }}" 
                              class="card-img-top p-3" alt="{{ $related->name }}" style="height: 180px; object-fit: contain;">
                     </a>
                     <div class="card-body text-center p-3">

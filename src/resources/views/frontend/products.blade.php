@@ -12,8 +12,8 @@
                         @foreach($manufactures as $value )
                         <div style="width: 160px; flex-shrink: 0;">
                             <a class="d-flex justify-content-center py-3 px-2 px-xl-3" href="{{ route('frontend.products.manufacturers', ['manufacturer_slug' => $value->slug]) }}">
-                                <img src="{{ asset('storage/app/private/'.$value->logo)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 40px;" />
-                                <img src="{{ asset('storage/app/private/'.$value->logo) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 40px;" />
+                                <img src="{{ asset('storage/'.$value->logo)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 40px;" />
+                                <img src="{{ asset('storage/'.$value->logo) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 40px;" />
                             </a>
                         </div>
                         @endforeach
@@ -55,7 +55,7 @@
                                     @foreach($featuredProducts as $product)
                                     <div class="swiper-slide d-flex justify-content-end">
                                         <div class="ratio rtl-flip" style="max-width:495px; --cz-aspect-ratio:calc(537 / 495 * 100%)">
-                                            <img src="{{ asset('storage/app/private/'. optional($product->avatar)->url) }}" alt="{{ $product->name }}" />
+                                            <img src="{{ asset('storage/'. optional($product->avatar)->url) }}" alt="{{ $product->name }}" />
                                         </div>
                                     </div>
                                     @endforeach
@@ -80,8 +80,8 @@
                         @foreach($categories as $value )
                         <div style="width: 160px; flex-shrink: 0;">
                             <a class="d-flex justify-content-center py-3 px-2 px-xl-3" href="{{ route('frontend.products.categories', ['categoryname_slug' => $value->slug]) }}">
-                                <img src="{{ asset('storage/app/private/'.$value->image)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
-                                <img src="{{ asset('storage/app/private/'.$value->image) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
+                                <img src="{{ asset('storage/'.$value->image)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
+                                <img src="{{ asset('storage/'.$value->image) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
                             </a>
                             <span class="d-block text-center text-truncate mt-2">{{ $value->name }}</span>
                         </div>
@@ -141,7 +141,7 @@
                             </div>
                             <a class="d-block rounded-top overflow-hidden p-3 p-sm-4" href="{{ route('frontend.products.product_category_details', ['categoryname_slug' => $cate->slug, 'productname_slug' => $prod->slug]) }}">
                                 <div class="ratio" style="--cz-aspect-ratio:calc(240 / 258 * 100%)">
-                                    <img src="{{ asset('storage/app/private/' . optional($prod->avatar)->url) }}" />
+                                    <img src="{{ asset('storage/' . optional($prod->avatar)->url) }}" />
                                 </div>
                                 <span class="badge bg-info position-absolute top-0 start-0 mt-2 ms-2 mt-lg-3 ms-lg-3">New</span>
                             </a>

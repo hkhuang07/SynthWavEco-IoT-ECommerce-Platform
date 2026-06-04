@@ -41,325 +41,9 @@
 </head>
 
 <body>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h5>
-                <i class="fas fa-microchip"></i> {{ config('app.name', 'SynWavEco') }}
-                <button class="sidebar-close" id="sidebarClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </h5>
-        </div>
-
-        <ul class="sidebar-nav">
-            @guest
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.login') }}">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.register') }}">
-                    <i class="fas fa-user-plus"></i> Register
-                </a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link fw-600 text-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center;">
-                    <img id="currentAvatar" src="{{ asset('storage/app/private') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:2.2rem; height:2.2rem">
-                    <span class="badge ms-2">
-                        {{ Auth::user()->name }}
-                    </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
-                </a>
-                <form id="logout-form-sidebar" action="{{ route('user.logout') }}" method="post" class="d-none">
-                    @csrf
-                </form>
-            </li>
-            @endguest
-
-            <li>
-                <h6 class="sidebar-section-title">Main Navigation</h6>
-            </li>
-
-            <li>
-                @php
-                $homeRoute = 'frontend.home';
-                if(Auth::user()->role) {
-                $roleName = Auth::user()->role->name;
-                if($roleName === 'Administrator') $homeRoute = 'administrator.home';
-                elseif($roleName === 'Saler') $homeRoute = 'saler.home';
-                elseif($roleName === 'Shipper') $homeRoute = 'shipper.home';
-                }
-                @endphp
-                <a class="nav-link" href="{{ route($homeRoute) }}">
-                    <i class="fas fa-th-large fs-lg opacity-60 me-2"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('frontend.home') }}">
-                    <i class="fas fa-store"></i> Products
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('frontend.articles') }}">
-                    <i class="fas fa-newspaper"></i> Articles
-                </a>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">Administration</h6>
-            </li>
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#userManagement">
-                    <i class="fas fa-users-cog"></i> User & Permissions
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-
-                <div class="collapse sidebar-submenu" id="userManagement">
-                    <a class="nav-link" href="{{ route('administrator.users') }}">
-                        <i class="fas fa-users"></i> User Management
-                    </a>
-
-                    <a class="nav-link" href="{{ route('administrator.roles') }}">
-                        <i class="fas fa-user-shield"></i> Roles Management
-                    </a>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#categoryManagement">
-                    <i class="fas fa-sitemap"></i> Categories and Manufacturers
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-                <div class="collapse sidebar-submenu" id="categoryManagement">
-                    <a class="nav-link" href="{{ route('administrator.categories') }}">
-                        <i class="fas fa-list"></i> Categories
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.manufacturers') }}">
-                        <i class="fas fa-copyright"></i> Manufacturers
-                    </a>
-                </div>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">Content & News</h6>
-            </li>
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#articleManagement">
-                    <i class="fas fa-newspaper"></i> Article Management
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-                <div class="collapse sidebar-submenu" id="articleManagement">
-                    <a class="nav-link" href="{{ route('administrator.topics') }}">
-                        <i class="fas fa-tags"></i> Topics
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.article_types') }}">
-                        <i class="fas fa-layer-group"></i> Article Types
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.article_statuses') }}">
-                        <i class="fas fa-toggle-on"></i> Article Status
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.articles') }}">
-                        <i class="fas fa-file-alt"></i> Articles
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.comments') }}">
-                        <i class="fas fa-comments"></i> Comments
-                    </a>
-                </div>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">Product Management</h6>
-            </li>
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#productManagement">
-                    <i class="fas fa-box"></i> Products
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-                <div class="collapse sidebar-submenu" id="productManagement">
-                    <a class="nav-link" href="{{ route('administrator.products') }}">
-                        <i class="fas fa-cube"></i> All Products
-                    </a>
-                </div>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">Order Management</h6>
-            </li>
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#orderManagement">
-                    <i class="fas fa-file-invoice"></i> Orders
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-                <div class="collapse sidebar-submenu" id="orderManagement">
-                    <a class="nav-link" href="{{ route('administrator.orders') }}">
-                        <i class="fas fa-shopping-cart"></i> All Orders
-                    </a>
-                    <a class="nav-link" href="{{ route('administrator.order_statuses') }}">
-                        <i class="fas fa-list-check"></i> Order Status
-                    </a>
-                </div>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">IoT Management</h6>
-            </li>
-            <li class="nav-item">
-                <button class="sidebar-dropdown collapsed" data-bs-target="#iotManagement">
-                    <i class="fas fa-microchip"></i> IoT Devices
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </button>
-                <div class="collapse sidebar-submenu" id="iotManagement">
-                    <a class="nav-link" href="{{ route('administrator.iot_devices') }}">
-                        <i class="fas fa-network-wired"></i> Device List
-                    </a>
-                </div>
-            </li>
-
-            <li>
-                <h6 class="sidebar-section-title">Settings</h6>
-            </li>
-            <li class="nav-item">
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <i class="fas fa-adjust"></i> <span id="themeText">Dark Mode</span>
-                </button>
-            </li>
-            <li class="nav-item">
-                <button class="lang-toggle" onclick="toggleLanguage()">
-                    <i class="fas fa-language"></i> <span id="langText">Vietnamese</span>
-                </button>
-            </li>
-        </ul>
-    </nav>
-
-    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-
-    <nav class="navbar navbar-expand-lg navbar-custom" id="mainNavbar">
-        <div class="container-fluid">
-            <button class="sidebar-toggle" id="sidebarToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <a class="navbar-brand fw-bold" href="{{ route('frontend.home') }}">
-                <span class="d-none d-sm-flex flex-shrink-0 text-primary me-2">
-                    <img src="{{ asset('public/images/synwaveco-logo.jpg') }}"
-                        alt="{{ config('app.name', 'SynWavEco') }} Logo"
-                        loading="lazy"
-                        style="width: 36px; height: 36px; object-fit: contain;">
-                </span>
-                <span class="fw-bold brand-text">{{ config('app.name', 'SynWavEco') }}</span>
-            </a>
-
-
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarMain">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.home') }}">
-                            <i class="fas fa-home"></i> Home
-                        </a>
-                    </li>
-
-                    {{-- PRODUCTS --}}
-                    <li class="nav-item ">
-                        <a class="nav-link fw-500" href="{{ route('frontend.products') }}">
-                            <i class="fas fa-box me-2"></i>Products
-                        </a>
-                    </li>
-
-                    {{-- ARTICLES / NEWS DROPDOWN --}}
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" href="{{ route('frontend.articles') }}">
-                            <i class="fas fa-newspaper me-2"></i>Articles
-                        </a>
-                    </li>
-
-                    {{-- ABOUT / CONTACT --}}
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" href="{{ route('frontend.contact') }}">
-                            <i class="fas fa-envelope me-2"></i>Contact
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" href="{{ route('frontend.recruitment') }}">
-                            <i class="fas fa-briefcase me-2"></i>Recruitment
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    @guest
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#user" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i> Account
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('user.login') }}">
-                                    <i class="fas fa-sign-in-alt"></i> Log In
-                                </a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.register') }}">
-                                    <i class="fas fa-user-plus"></i> Register
-                                </a></li>
-                        </ul>
-                    </li>
-                    @else
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-600 text-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center;">
-                            <img id="currentAvatar" src="{{ asset('storage/app/private') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:2.2rem; height:2.2rem">
-                            <span class="badge badge-role ms-2 text-white">
-                                {{ Auth::user()->name }}
-                            </span>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                @php
-                                $homeRoute = 'frontend.home';
-                                if(Auth::user()->role) {
-                                $roleName = Auth::user()->role->name;
-                                if($roleName === 'Administrator') $homeRoute = 'administrator.home';
-                                elseif($roleName === 'Saler') $homeRoute = 'saler.home';
-                                elseif($roleName === 'Shipper') $homeRoute = 'shipper.home';
-                                }
-                                @endphp
-                                <a class="dropdown-item fw-bold" href="{{ route($homeRoute) }}">
-                                    <i class="fas fa-th-large fs-lg opacity-60 me-2"></i>
-                                    Go to Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('user.profile') }}">
-                                    <i class="fas fa-id-card me-2"></i>My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('user.logout') }}"
-                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt"></i> Log Out
-                                </a></li>
-                        </ul>
-                    </li>
-                    @endguest
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.partials.sidebar')
+    @include('layouts.partials.cart-offcanvas')
+    @include('layouts.partials.navbar')
 
     <div id="pageWrapper">
         <main class="main-content" id="mainContent">
@@ -562,80 +246,71 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar control script
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebarClose = document.getElementById('sidebarClose');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
             const mainContent = document.getElementById('mainContent');
-            const navbar = document.getElementById('mainNavbar');
 
             function openSidebar() {
-                sidebar.classList.add('show');
-                sidebarOverlay.classList.add('show');
-                if (window.innerWidth > 768) {
+                if (sidebar) sidebar.classList.add('show');
+                if (sidebarOverlay) sidebarOverlay.classList.add('show');
+                if (mainContent && window.innerWidth > 768) {
                     mainContent.classList.add('sidebar-open');
                 }
             }
 
             function closeSidebar() {
-                sidebar.classList.remove('show');
-                sidebarOverlay.classList.remove('show');
-                mainContent.classList.remove('sidebar-open');
+                if (sidebar) sidebar.classList.remove('show');
+                if (sidebarOverlay) sidebarOverlay.classList.remove('show');
+                if (mainContent) mainContent.classList.remove('sidebar-open');
             }
 
-            sidebarToggle.addEventListener('click', openSidebar);
-            sidebarClose.addEventListener('click', closeSidebar);
-            sidebarOverlay.addEventListener('click', closeSidebar);
+            if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+            if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
-            // Sidebar dropdown functionality
-            const dropdownButtons = document.querySelectorAll('.sidebar-dropdown');
-            dropdownButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    this.classList.toggle('collapsed');
-                    const targetId = this.getAttribute('data-bs-target');
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        target.classList.toggle('show');
-                    }
-                });
+            // Initialize tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
 
-            function fixNavbarPosition() {
-                if (navbar) {
-                    navbar.style.position = 'fixed';
-                    navbar.style.top = '0';
-                    navbar.style.left = '0';
-                    navbar.style.right = '0';
-                    navbar.style.zIndex = '9999';
-
-                    const pageWrapper = document.getElementById('pageWrapper');
-                    if (pageWrapper) {
-                        const navbarHeight = navbar.offsetHeight;
-                        pageWrapper.style.paddingTop = navbarHeight + 'px';
-                    }
-                }
-            }
-
-            fixNavbarPosition();
-            window.addEventListener('resize', fixNavbarPosition);
+            console.log('✅ App Layout: Initialized successfully');
         });
 
-        // Theme & Language (Minimal implementation)
+        // Theme switcher functionality
         function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-            document.getElementById('themeText').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-bs-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) {
+                themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun text-white fs-5' : 'fas fa-moon text-white fs-5';
+            }
         }
 
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('language') === 'vi' ? 'en' : 'vi';
-            localStorage.setItem('language', currentLang);
-            document.getElementById('langText').textContent = currentLang === 'vi' ? 'English' : 'Vietnamese';
-        }
+        // Initialize Theme
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            document.addEventListener('DOMContentLoaded', () => {
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeIcon) {
+                    themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun text-white fs-5' : 'fas fa-moon text-white fs-5';
+                }
+            });
+        })();
     </script>
 
     @yield('scripts')
 </body>
-
-</html>

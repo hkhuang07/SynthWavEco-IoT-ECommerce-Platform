@@ -43,7 +43,7 @@
             <div class="item-card" data-user-id="{{ $user->id }}">
                 <div class="item-image-container">
                     @if($user->avatar) 
-                    <img src="{{ asset('storage/app/private/'. $user->avatar) }}"
+                    <img src="{{ asset('storage/'. $user->avatar) }}"
                         alt="{{ $user->avatar }}"
                         class="item-image"
                         loading="lazy">

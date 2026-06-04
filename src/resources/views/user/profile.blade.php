@@ -21,7 +21,7 @@
                         <div class="d-flex align-items-center">
                             
                             <!--div class="h5 d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle mb-0" style="width:3rem; height:3rem">{{ strtoupper(substr($user->name, 0, 1)) }}</div-->
-                            <img id="currentAvatar" src="{{ asset('storage/app/private') }}/{{$user->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle mb-0" style="width:3rem; height:3rem">
+                            <img id="currentAvatar" src="{{ asset('storage') }}/{{$user->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle mb-0" style="width:3rem; height:3rem">
 
 
                             <div class="min-w-0 ps-3">

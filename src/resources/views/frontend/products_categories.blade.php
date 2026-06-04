@@ -44,7 +44,7 @@
                     <div class="card h-100 shadow-sm">
                         {{-- Thêm đường dẫn tới chi tiết sản phẩm vào hình ảnh --}}
                         <a href="{{ route('frontend.products.product_category_details', ['categoryname_slug' => $product->category->slug, 'productname_slug' => $product->slug]) }}">
-                            <img src="{{ asset('storage/app/private/'. ($product->avatar->url ?? 'default.png')) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ asset('storage/'. ($product->avatar->url ?? 'default.png')) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>

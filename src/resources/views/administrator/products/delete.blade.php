@@ -75,7 +75,7 @@
                 avatarUrl = avatar && avatar.url ? avatar.url : (productData.images[0] && productData.images[0].url ? productData.images[0].url : null);
             }
 
-            const baseStorageUrl = window.location.origin + '/synwaveco-ecommerce/storage/app/private/';
+            const baseStorageUrl = window.location.origin + '/synwaveco-ecommerce/storage/';
 
             if (avatarUrl && img) {
                 img.src = baseStorageUrl + avatarUrl;

@@ -135,7 +135,7 @@
         const currentImg = document.getElementById('currentArticleImage');
         const imgPreview = document.getElementById('currentArticleImagePreview');
         if (articleData.image) {
-            currentImg.src = "{{ asset('storage/app/private') }}/" + articleData.image;
+            currentImg.src = "{{ asset('storage') }}/" + articleData.image;
             imgPreview.style.display = 'block';
         } else {
             imgPreview.style.display = 'none';

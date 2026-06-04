@@ -1,25 +1,71 @@
-*.log
+# =========================================================================
+# SynWaveEco Project-Wide .gitignore
+# Co-authored by Huỳnh Quốc Huy & Antigravity (Google DeepMind)
+# =========================================================================
+
+# --- System & OS Temp Files ---
 .DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+*.log
+
+# --- IDEs and Text Editors ---
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+.phpactor.json
+
+# --- Dependency Folders ---
+# Matches at root and nested subdirectories (like src/node_modules, src/vendor)
+node_modules/
+vendor/
+
+# --- Environment Configurations ---
+# Sensitive information must never be committed
 .env
 .env.backup
 .env.production
-.phpactor.json
+.env.local
+.env.development
+.env.testing
+.env.production.local
+.env.local.php
+auth.json
+
+# --- Laravel Framework Specifics (Inside src/ or anywhere) ---
+**/storage/*.key
+**/storage/pail
+**/storage/logs/*.log
+**/storage/framework/cache/data/*
+**/storage/framework/sessions/*
+**/storage/framework/views/*.php
+**/storage/framework/testing/*
+**/bootstrap/cache/*.php
+
+# --- Front-end and Compilation Outputs ---
+**/public/hot
+**/public/build
+**/public/storage
+
+# --- PHPUnit and testing caches ---
 .phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/src/.env
-/auth.json
-/node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/vendor
+.phpunit.cache/
+
+# --- Homestead and Virtual Machines ---
 Homestead.json
 Homestead.yaml
-Thumbs.db
+.vagrant/

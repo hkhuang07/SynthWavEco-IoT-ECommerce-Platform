@@ -174,7 +174,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-600 text-primary" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img id="currentAvatar" src="{{ asset('storage/app/private') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:2.2rem; height:2.2rem">
+                            <img id="currentAvatar" src="{{ asset('storage') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:2.2rem; height:2.2rem">
                             <span class="badge badge-role ms-2">
                                 {{ Auth::user()->name }}
                             </span>

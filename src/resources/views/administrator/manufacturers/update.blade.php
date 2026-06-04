@@ -46,7 +46,7 @@
                             Logo URL
                         </label>
                          @if(!empty($manufacturer->logo))
-                        <img class="d-block rounded img-thumbnail" src="{{ asset('storage/app/private/'. $manufacturer->logo) }}" width="100" />
+                        <img class="d-block rounded img-thumbnail" src="{{ asset('storage/'. $manufacturer->logo) }}" width="100" />
                         <small class="form-text text-muted">Leave empty to keep current logo</small>
                         @endif
                         <input
@@ -197,7 +197,7 @@
         const currentLogo = document.getElementById('currentLogo');
 
         if (manufacturerData.logo) {
-            currentLogo.src = "{{ asset('storage/app/private') }}/" + manufacturerData.logo;
+            currentLogo.src = "{{ asset('storage') }}/" + manufacturerData.logo;
             currentLogoPreview.style.display = 'block';
         } else {
             currentLogoPreview.style.display = 'none';

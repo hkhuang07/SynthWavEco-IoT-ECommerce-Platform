@@ -45,7 +45,7 @@
                         {{-- Link tới trang chi tiết dựa trên Article Type --}}
                         <a href="{{ route('frontend.articles.article_type_details', ['article_type_slug' => $article->ArticleType->slug, 'title_slug' => $article->slug]) }}">
                             @if($article->image)
-                                <img src="{{ asset('storage/app/private/'. $article->image) }}" 
+                                <img src="{{ asset('storage/'. $article->image) }}" 
                                      class="card-img-top" alt="{{ $article->title }}"
                                      style="height: 180px; object-fit: cover;">
                             @else

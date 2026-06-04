@@ -246,13 +246,13 @@
         const backgroundPreview = document.getElementById('currentBackgroundPreview');
         const backgroundImg = document.getElementById('currentBackground');
         if (userData.avatar) {
-            avatarImg.src = `{{ asset('storage/app/private') }}/${userData.avatar}`;
+            avatarImg.src = `{{ asset('storage') }}/${userData.avatar}`;
             avatarPreview.style.display = 'block';
         } else {
             avatarPreview.style.display = 'none';
         }
         if (userData.background) {
-            avatarImg.src = `{{ asset('storage/app/private') }}/${userData.background}`;
+            avatarImg.src = `{{ asset('storage') }}/${userData.background}`;
             avatarPreview.style.display = 'block';
         } else {
             avatarPreview.style.display = 'none';

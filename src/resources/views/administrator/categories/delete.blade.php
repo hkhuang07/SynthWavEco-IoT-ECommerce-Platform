@@ -94,7 +94,7 @@
         const noImagePlaceholder = document.getElementById('deleteNoImage');
 
         if (categoryData.image) {
-            categoryImg.src = "{{ asset('storage/app/private') }}/" + categoryData.image;
+            categoryImg.src = "{{ asset('storage') }}/" + categoryData.image;
             categoryImg.style.display = 'block';
             noImagePlaceholder.style.display = 'none';
         } else {
@@ -129,7 +129,7 @@
 
             if (categoryImg && noImagePlaceholder) {
                 if (categoryData.image) {
-                    categoryImg.src = "{{ asset('storage/app/private') }}/" + categoryData.image;
+                    categoryImg.src = "{{ asset('storage') }}/" + categoryData.image;
                     categoryImg.style.display = 'block';
                     noImagePlaceholder.style.display = 'none';
                 } else {

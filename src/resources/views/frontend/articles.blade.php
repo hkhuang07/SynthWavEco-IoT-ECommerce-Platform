@@ -42,7 +42,7 @@
                                     @foreach($articles->take(5) as $art)
                                     <div class="swiper-slide d-flex justify-content-end">
                                         <div class="ratio rtl-flip" style="max-width:495px; --cz-aspect-ratio:calc(537 / 495 * 100%)">
-                                            <img src="{{ asset('storage/app/private/'. ($art->image ?? 'default.png')) }}" alt="{{ $art->title }}" class="rounded-5 shadow" style="object-fit: cover;" />
+                                            <img src="{{ asset('storage/'. ($art->image ?? 'default.png')) }}" alt="{{ $art->title }}" class="rounded-5 shadow" style="object-fit: cover;" />
                                         </div>
                                     </div>
                                     @endforeach
@@ -69,8 +69,8 @@
                 @foreach($topics as $value )
                 <div style="width: 160px; flex-shrink: 0;">
                     <a class="d-flex justify-content-center py-3 px-2 px-xl-3" href="{{ route('frontend.articles.topics', ['topicname_slug' => $value->slug]) }}">
-                        <img src="{{ asset('storage/app/private/'.$value->image)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
-                        <img src="{{ asset('storage/app/private/'.$value->image) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
+                        <img src="{{ asset('storage/'.$value->image)}}" class="d-block d-none-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
+                        <img src="{{ asset('storage/'.$value->image) }}" class="d-none d-block-dark" alt="{{ $value->name }}" style="max-height: 60px;" />
                     </a>
                     <span class="d-block text-center text-truncate mt-2">{{ $value->name }}</span>
                 </div>
@@ -130,7 +130,7 @@
                         {{-- Hình ảnh bài viết --}}
                         <a class="d-block rounded-top overflow-hidden p-0" href="{{ route('frontend.articles.article_topic_details', ['topicname_slug' => $topic->slug, 'title_slug' => $art->slug]) }}">
                             <div class="ratio" style="--cz-aspect-ratio:calc(240 / 300 * 100%)">
-                                <img src="{{ asset('storage/app/private/' . $art->image) }}" class="img-fluid" alt="{{ $art->title }}" style="object-fit: cover;" />
+                                <img src="{{ asset('storage/' . $art->image) }}" class="img-fluid" alt="{{ $art->title }}" style="object-fit: cover;" />
                             </div>
                             {{-- Badge loại bài viết --}}
                             <span class="badge bg-info position-absolute top-0 start-0 mt-2 ms-2">{{ $art->ArticleType->name ?? 'IoT' }}</span>

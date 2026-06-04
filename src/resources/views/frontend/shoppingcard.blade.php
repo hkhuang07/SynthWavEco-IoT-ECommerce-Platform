@@ -34,7 +34,7 @@
                                 <td class="py-3 ps-0">
                                     <div class="d-flex align-items-center">
                                         <a class="flex-shrink-0" href="#">
-                                            <img src="{{ asset('storage/app/private/' . $value->options->image ) }}" width="110" alt="{{ $value->name }}" />
+                                            <img src="{{ asset('storage/' . $value->options->image ) }}" width="110" alt="{{ $value->name }}" />
                                         </a>
                                         <div class="w-100 min-w-0 ps-2 ps-xl-3">
                                             <h5 class="d-flex animate-underline mb-2">

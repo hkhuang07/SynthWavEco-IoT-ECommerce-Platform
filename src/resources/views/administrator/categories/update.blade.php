@@ -73,7 +73,7 @@
                             Image URL
                         </label>
                         @if(!empty($categories->image))
-                        <img class="d-block rounded img-thumbnail" src="{{ asset('storage/app/private/'. $categories->image) }}" width="100" />
+                        <img class="d-block rounded img-thumbnail" src="{{ asset('storage/'. $categories->image) }}" width="100" />
                         <small class="form-text text-muted">Leave empty to keep current image</small>
                         @endif
                         <input
@@ -159,7 +159,7 @@
         const currentImage = document.getElementById('currentImage');
 
         if (categoryData.image) {
-            currentImage.src = "{{ asset('storage/app/private') }}/" + categoryData.image;
+            currentImage.src = "{{ asset('storage') }}/" + categoryData.image;
             currentImagePreview.style.display = 'block';
         } else {
             currentImagePreview.style.display = 'none';

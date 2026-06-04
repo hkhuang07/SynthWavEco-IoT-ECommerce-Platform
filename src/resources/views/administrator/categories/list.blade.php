@@ -55,7 +55,7 @@
             <div class="item-card" data-category-id="{{ $category->id }}">
                 <div class="item-image-container">
                     @if(isset($category->image) && $category->image && file_exists(storage_path('app/private/' . $category->image)))
-                    <img src="{{ asset('storage/app/private/'. $category->image) }}"
+                    <img src="{{ asset('storage/'. $category->image) }}"
                         alt="{{ $category->name }}"
                         class="item-image"
                         loading="lazy">

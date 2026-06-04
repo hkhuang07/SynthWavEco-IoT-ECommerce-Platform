@@ -75,8 +75,10 @@
         // 1. Cập nhật thông tin cơ bản
         document.getElementById('detailOrderId').textContent = '#' + orderData.id;
         document.getElementById('detailUserName').textContent = orderData.user ? orderData.user.name : 'Guest';
-        //document.getElementById('detailStatus').textContent = orderData.statuses ? orderData.statuses.name : 'N/A';
-        document.getElementById('detailStatus').className = 'badge status-' + (orderData.status ? orderData.status.name.toLowerCase().replace(/ /g, '-') : 'na');
+        const statusName = orderData.status ? orderData.status.name : 'N/A';
+        const statusBadge = document.getElementById('detailStatus');
+        statusBadge.textContent = statusName;
+        statusBadge.className = 'badge status-' + statusName.toLowerCase().replace(/ /g, '-');
         
         // Format ngày tháng
         const createdDate = new Date(orderData.created_at);

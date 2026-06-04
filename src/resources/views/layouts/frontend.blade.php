@@ -95,96 +95,16 @@
     </div>
 
 
-    <div>
-        <div class="offcanvas-header nav border-top px-0 py-3 mt-3 d-md-none">
-            <ul class="navbar-nav w-100">
-                @guest
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center justify-content-center" href="{{ route('user.login') }}">
-                        <i class="fas fa-sign-in-alt fs-lg opacity-60 me-2"></i> Log In
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center justify-content-center" href="{{ route('user.register') }}">
-                        <i class="fas fa-user-plus fs-sm opacity-60 me-2"></i> Register
-                    </a>
-                </li>
-                @else
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" href="#" data-bs-toggle="dropdown">
-                        <i class="fas fa-user fs-lg opacity-60 me-2"></i> {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-center border-0 shadow-none">
-                        <li><a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fas fa-user me-2"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="{{ route('user.logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();">
-                                <i class="fas fa-sign-out-alt me-2"></i> Log Out
-                            </a></li>
-                        <form id="logout-form-mobile" action="{{ route('user.logout') }}" method="POST" class="d-none">@csrf</form>
-                    </ul>
-                </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-
-    {{-- Shopping Cart Offcanvas --}}
-    <div class="offcanvas offcanvas-end pb-sm-2 px-sm-2" id="shoppingCart" tabindex="-1" style="width:500px">
-        <div class="offcanvas-header flex-column align-items-start py-3 pt-lg-4">
-            <div class="d-flex align-items-center justify-content-between w-100">
-                <h4 class="offcanvas-title" id="shoppingCartLabel">My Shopping Cart ({{ Cart::count() ?? 0 }})</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-            </div>
-        </div>
-
-        @if(Cart::count() > 0)
-        <div class="offcanvas-body d-flex flex-column gap-4 pt-2">
-            @foreach(Cart::content() as $value)
-            <div class="d-flex align-items-center">
-                <a class="flex-sm-shrink-0" href="#" style="width:142px">
-                    <div class="ratio bg-body-tertiary rounded overflow-hidden" style="--cz-aspect-ratio:calc(110 / 142 * 100%)">
-                        <img src="{{ asset('storage/app/private/' . $value->options->image ) }}" alt="Product" />
-                    </div>
-                </a>
-                <div class="w-100 min-w-0 ps-3">
-                    <h5 class="d-flex animate-underline mb-2">
-                        <a class="d-block fs-sm fw-medium text-truncate animate-target" href="#">{{ $value->name }}</a>
-                    </h5>
-                    <div class="d-flex align-items-center justify-content-between gap-1">
-                        <div class="h6 mt-1 mb-0">{{ number_format($value->price, 0, ',', '.') }}<small>$</small></div>
-                        <a href="{{ route('frontend.shoppingcard.delete', ['row_id' => $value->rowId]) }}" class="btn btn-icon btn-sm flex-shrink-0 fs-sm" data-bs-toggle="tooltip" data-bs-title="Remove from cart">
-                            <i class="fas fa-trash fs-base"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-        <div class="offcanvas-header flex-column align-items-start">
-            <div class="d-flex align-items-center justify-content-between w-100 mb-3 mb-md-4">
-                <span class="text-light-emphasis">Total Price:</span>
-                <span class="h6 mb-0">{{ Cart::priceTotal() }}<small>$</small></span>
-            </div>
-            <a class="btn btn-lg btn-primary w-100 rounded-pill" href="{{ route('frontend.shoppingcard') }}">View My Shopping Cart</a>
-        </div>
-        @else
-        <div class="offcanvas-body text-center">
-            <i class="fas fa-shopping-cart fa-3x text-body-tertiary opacity-60 mb-4"></i>
-            <h6 class="mb-2">Your cart is currently empty!</h6>
-            <p class="fs-sm mb-4">Explore our many items and add products to your cart.</p>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Continue Shopping</button>
-        </div>
-        @endif
-    </div>
+    @include('layouts.partials.sidebar')
+    @include('layouts.partials.cart-offcanvas')
 
     {{-- Page Wrapper --}}
     <div id="pageWrapper" class="d-flex flex-column min-vh-100">
         {{-- HEADER COMPONENT --}}
-        @include('frontend.partials.header')
+        @include('layouts.partials.navbar')
 
         {{-- MAIN CONTENT --}}
-        <main class="content-wrapper flex-grow-1">
+        <main class="main-content" id="mainContent">
             @yield('content')
         </main>
         {{-- FOOTER COMPONENT --}}
@@ -211,7 +131,7 @@
             data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" style="width: 56px; height: 56px; padding: 0;">
             <i class="fas fa-shopping-cart fs-5"></i>
             @if(Cart::count() > 0)
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span class="position-absolute badge rounded-circle bg-danger d-flex align-items-center justify-content-center" style="top: -2px; right: -2px; width: 20px; height: 20px; font-size: 11px; font-weight: bold; color: white !important; padding: 0; z-index: 10;">
                 {{ Cart::count() }}
             </span>
             @endif
@@ -234,15 +154,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const navbar = document.querySelector('.navbar-sticky');
-            const pageWrapper = document.getElementById('pageWrapper');
+            // Sidebar control script
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mainContent = document.getElementById('mainContent');
 
-            if (navbar) {
-                navbar.style.position = 'sticky';
-                navbar.style.top = '0';
-                navbar.style.zIndex = '9999';
-                navbar.style.width = '100%';
+            function openSidebar() {
+                if (sidebar) sidebar.classList.add('show');
+                if (sidebarOverlay) sidebarOverlay.classList.add('show');
+                if (mainContent && window.innerWidth > 768) {
+                    mainContent.classList.add('sidebar-open');
+                }
             }
+
+            function closeSidebar() {
+                if (sidebar) sidebar.classList.remove('show');
+                if (sidebarOverlay) sidebarOverlay.classList.remove('show');
+                if (mainContent) mainContent.classList.remove('sidebar-open');
+            }
+
+            if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+            if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
             // Initialize tooltips
             const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -257,19 +192,19 @@
             const searchBox = document.getElementById('searchBox');
             const btnOpenSearch = document.getElementById('btnOpenSearch');
 
-            // Logic 1: Khi Off-canvas Search ĐÓNG -> Hiện nút nổi
-            searchBox.addEventListener('hidden.bs.offcanvas', function() {
-                btnOpenSearch.classList.remove('d-none');
-                btnOpenSearch.classList.add('d-flex');
-            });
+            if (searchBox && btnOpenSearch) {
+                // Logic 1: Khi Off-canvas Search ĐÓNG -> Hiện nút nổi
+                searchBox.addEventListener('hidden.bs.offcanvas', function() {
+                    btnOpenSearch.classList.remove('d-none');
+                    btnOpenSearch.classList.add('d-flex');
+                });
 
-            // Logic 2: Khi Off-canvas Search MỞ -> Ẩn nút nổi
-            searchBox.addEventListener('shown.bs.offcanvas', function() {
-                btnOpenSearch.classList.add('d-none');
-                btnOpenSearch.classList.remove('d-flex');
-            });
-
-            // Mặc định ban đầu Off-canvas mở nên nút nổi sẽ ẩn (đã đặt d-none ở HTML)
+                // Logic 2: Khi Off-canvas Search MỞ -> Ẩn nút nổi
+                searchBox.addEventListener('shown.bs.offcanvas', function() {
+                    btnOpenSearch.classList.add('d-none');
+                    btnOpenSearch.classList.remove('d-flex');
+                });
+            }
         });
 
         document.querySelectorAll('.dropdown-submenu .dropdown-toggle').forEach(function(element) {
@@ -283,36 +218,48 @@
         });
 
         // Theme switcher functionality
-        function initializeThemeSwitcher() {
-            const themeButtons = document.querySelectorAll('[data-bs-theme-value]');
-
-            themeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const theme = this.getAttribute('data-bs-theme-value');
-                    document.documentElement.setAttribute('data-bs-theme', theme);
-                    localStorage.setItem('theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-bs-theme', savedTheme);
-        }
-
-        function updateSearchAction(value) {
-            const form = document.getElementById('globalSearchForm');
-            if (value === 'articles') {
-                form.action = "{{ route('frontend.search.article_results') }}";
-                document.getElementById('searchInputField').placeholder = "Search technical articles & topics...";
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-bs-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-mode');
             } else {
-                form.action = "{{ route('frontend.search.product_results') }}";
-                document.getElementById('searchInputField').placeholder = "Type IoT product name...";
+                document.body.classList.remove('dark-mode');
+            }
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) {
+                themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun text-white fs-5' : 'fas fa-moon text-white fs-5';
             }
         }
 
-        initializeThemeSwitcher();
+        // Initialize Theme
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            document.addEventListener('DOMContentLoaded', () => {
+                const themeIcon = document.getElementById('themeIcon');
+                if (themeIcon) {
+                    themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun text-white fs-5' : 'fas fa-moon text-white fs-5';
+                }
+            });
+        })();
+
+        function updateSearchAction(value) {
+            const form = document.getElementById('globalSearchForm');
+            if (form) {
+                if (value === 'articles') {
+                    form.action = "{{ route('frontend.search.article_results') }}";
+                    document.getElementById('searchInputField').placeholder = "Search technical articles & topics...";
+                } else {
+                    form.action = "{{ route('frontend.search.product_results') }}";
+                    document.getElementById('searchInputField').placeholder = "Type IoT product name...";
+                }
+            }
+        }
     </script>
 
     {{-- Custom JavaScript --}}

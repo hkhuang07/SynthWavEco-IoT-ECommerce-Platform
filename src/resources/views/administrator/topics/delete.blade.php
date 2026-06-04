@@ -93,7 +93,7 @@
             const previewContainer = document.getElementById('deleteTopicPreview');
 
             if (topicData.image) {
-                topicImg.src = "{{ asset('storage/app/private') }}/" + topicData.image;
+                topicImg.src = "{{ asset('storage') }}/" + topicData.image;
                 previewContainer.style.display = 'block'; 
             } else {
                 previewContainer.style.display = 'none'; 

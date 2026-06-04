@@ -21,7 +21,7 @@
                 <div class="admin-info">
                     <div class="admin-avatar">
                         <i class="fas fa-3x">
-                            <img id="currentAvatar" src="{{ asset('storage/app/private') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:4rem; height:4rem">
+                            <img id="currentAvatar" src="{{ asset('storage') }}/{{Auth::user()->avatar}}" alt="Avatar" class="d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle me-3" style="width:4rem; height:4rem">
                         </i>
                     </div>
                     <div class="admin-details">

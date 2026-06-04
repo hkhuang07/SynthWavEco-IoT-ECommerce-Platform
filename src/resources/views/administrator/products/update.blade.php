@@ -322,7 +322,7 @@
         }
 
         if (avatarUrl) {
-            currentImage.src = "{{ asset('storage/app/private') }}/" + avatarUrl;
+            currentImage.src = "{{ asset('storage') }}/" + avatarUrl;
             currentImagePreview.style.display = 'block';
         } else {
             currentImagePreview.style.display = 'none';

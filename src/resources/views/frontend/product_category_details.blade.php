@@ -22,7 +22,7 @@
         <div class="col-lg-6 mb-4 mb-lg-0">
             <div class="card p-3 shadow-sm">
                 @if($avatar)
-                    <img src="{{ asset('storage/app/private/'.$avatar->url) }}" 
+                    <img src="{{ asset('storage/'.$avatar->url) }}" 
                          alt="{{ $product->name }}" 
                          class="img-fluid rounded" 
                          style="max-height: 500px; object-fit: contain;">
@@ -34,7 +34,7 @@
                 <div class="row mt-3 g-2">
                     @foreach($product->images->where('is_avatar', false)->take(3) as $image)
                         <div class="col-4">
-                            <img src="{{ asset('storage/app/private/'.$image->url) }}" 
+                            <img src="{{ asset('storage/'.$image->url) }}" 
                                  class="img-thumbnail" 
                                  alt="Gallery Image">
                         </div>
@@ -109,7 +109,7 @@
         <div class="col">
             <div class="card h-100 shadow-sm">
                 <a href="{{ route('frontend.products.product_category_details', ['categoryname_slug' => $related->category->slug, 'productname_slug' => $related->slug]) }}">
-                    <img src="{{ asset('storage/app/private/'. ($related->avatar->url ?? 'default.png')) }}" class="card-img-top" alt="{{ $related->name }}">
+                    <img src="{{ asset('storage/'. ($related->avatar->url ?? 'default.png')) }}" class="card-img-top" alt="{{ $related->name }}">
                 </a>
                 <div class="card-body text-center">
                     <h6 class="card-title mb-1">{{ $related->name }}</h6>
