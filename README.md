@@ -79,6 +79,20 @@ SynWaveEco operates under a **B2C (Business-to-Consumer)** model, leveraging a m
 
 ### 1. Customer-Facing Interface (Client UI)
 
+#### 🌟 Authentication
+<p align="center">
+  <img src="demo/login.jpg" alt="Login Page" width="900"/>
+  <br/>
+  <em>Login Interface</em>
+</p>
+
+<p align="center">
+  <img src="demo/register.jpg" alt="Register Interface" width="900"/>
+  <br/>
+  <em>Register Interface</em>
+</p>
+
+
 #### 🌟 Homepage & Banner Promos
 <p align="center">
   <img src="demo/home01.jpg" alt="SynWaveEco Homepage" width="900"/>

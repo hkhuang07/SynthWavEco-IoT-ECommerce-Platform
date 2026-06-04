@@ -80,6 +80,19 @@ SynWaveEco vận hành theo mô hình thương mại điện tử **B2C (Busines
 
 ### 1. Giao diện Phía Khách hàng (User Interface)
 
+#### 🌟 Xác thực
+<p align="center">
+  <img src="demo/login.jpg" alt="Login Page" width="900"/>
+  <br/>
+  <em>Đăng nhập</em>
+</p>
+
+<p align="center">
+  <img src="demo/register.jpg" alt="Register Interface" width="900"/>
+  <br/>
+  <em>Đăng ký</em>
+</p>
+
 #### 🌟 Trang chủ & Banner quảng bá (Homepage)
 <p align="center">
   <img src="demo/home01.jpg" alt="Trang chủ SynWaveEco" width="900"/>
