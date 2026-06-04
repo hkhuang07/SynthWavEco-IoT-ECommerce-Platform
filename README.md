@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="synwaveco-ecommerce/public/images/synwaveco-logo.jpg" alt="SynWaveEco Logo" height="75"/>
+  <img src="demo/synwaveco-logo.jpg" alt="SynWaveEco Logo" height="75"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="synwaveco-ecommerce/public/images/logoname.jpg" alt="SynWaveEco Logo Name" height="75"/>
+  <img src="demo/logoname.jpg" alt="SynWaveEco Logo Name" height="75"/>
 </p>
 
 # 🌊💚 SynWaveEco - Smart E-Commerce & IoT Device Management Platform
