@@ -250,17 +250,36 @@ Resources sharing guides, hardware assembly tips, and code blocks:
 ### 4. Admin Management Dashboard
 
 #### 🛠️ Dashboard & IoT Telemetry Controls
-<p align="center">
-  <img src="demo/synwaveco-administrator-iot-devices.jpg" alt="IoT Device Manager" width="900"/>
-  <br/>
-  <em>IoT Device management: Registering nodes, linking MAC addresses, and assigning to customers</em>
-</p>
 
 <p align="center">
   <img src="demo/synwaveco-administrator-products.jpg" alt="Admin Products List" width="900"/>
   <br/>
   <em>Products management dashboard for managing listings and updating tech specs sheets</em>
 </p>
+
+<p align="center">
+  <img src="demo/synwaveco-administrator-categories.jpg" alt="Categories Manager" width="900"/>
+  <br/>
+  <em>Categories configuration for structural classification of electronic components</em>
+</p>
+
+<p align="center">
+  <img src="demo/synwaveco-administrator-manufacturers.jpg" alt="Manufacturers Panel" width="900"/>
+  <br/>
+  <em>Managing manufacturer records and hardware brand directories</em>
+</p>
+
+  <p align="center">
+    <img src="demo/synwaveco-administrator-articles.jpg" alt="Articles Dashboard" width="900"/>
+    <br/>
+    <em>Drafting, editing, and publishing guide posts with CKEditor 5</em>
+  </p>
+
+  <p align="center">
+    <img src="demo/synwaveco-administrator-topics.jpg" alt="Topics Manager" width="900"/>
+    <br/>
+    <em>Managing community topics and article discussion tags</em>
+  </p>
 
 <details>
   <summary>🔍 View Full Suite of Admin Operations</summary>
@@ -278,6 +297,13 @@ Resources sharing guides, hardware assembly tips, and code blocks:
   </p>
 
   <p align="center">
+    <img src="demo/synwaveco-administrator-iot-devices.jpg" alt="IoT Device Manager" width="900"/>
+    <br/>
+    <em>IoT Device management: Registering nodes, linking MAC addresses, and assigning to customers</em>
+  </p>
+
+
+  <p align="center">
     <img src="demo/synwaveco-administrator-order.jpg" alt="Order Management" width="900"/>
     <br/>
     <em>Orders panel for review, invoicing, status overrides, and assignment to shippers</em>
@@ -287,30 +313,6 @@ Resources sharing guides, hardware assembly tips, and code blocks:
     <img src="demo/synwaveco-administrator-order-status.jpg" alt="Order Statuses" width="900"/>
     <br/>
     <em>Configuring transactional steps: Pending, Processing, Shipping, Delivered, Canceled</em>
-  </p>
-
-  <p align="center">
-    <img src="demo/synwaveco-administrator-categories.jpg" alt="Categories Manager" width="900"/>
-    <br/>
-    <em>Categories configuration for structural classification of electronic components</em>
-  </p>
-
-  <p align="center">
-    <img src="demo/synwaveco-administrator-manufacturers.jpg" alt="Manufacturers Panel" width="900"/>
-    <br/>
-    <em>Managing manufacturer records and hardware brand directories</em>
-  </p>
-
-  <p align="center">
-    <img src="demo/synwaveco-administrator-articles.jpg" alt="Articles Dashboard" width="900"/>
-    <br/>
-    <em>Drafting, editing, and publishing guide posts with CKEditor 5</em>
-  </p>
-
-  <p align="center">
-    <img src="demo/synwaveco-administrator-topics.jpg" alt="Topics Manager" width="900"/>
-    <br/>
-    <em>Managing community topics and article discussion tags</em>
   </p>
 
   <p align="center">
